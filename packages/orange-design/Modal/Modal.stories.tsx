@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal } from "./index";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import "./style/index.scss";
 
 export default {
   title: "Modal",

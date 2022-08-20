@@ -14,7 +14,7 @@ function removeBeforeFold() {
 }
 function handlerScss() {
   return gulp
-    .src(basePath + "/components/**/style/*.scss")
+    .src(basePath + "/**/style/*.scss")
     .pipe(sass())
     .pipe(gulp.dest("style"));
 }

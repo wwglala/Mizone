@@ -4,6 +4,8 @@ const commonjs = require("@rollup/plugin-commonjs");
 const json = require("@rollup/plugin-json");
 const typescript = require("rollup-plugin-typescript2");
 
+const extensions = [".tsx", ".ts", ".js", ".json"];
+
 module.exports = {
   input: "./packages/orange-design/index.ts",
   output: [
@@ -23,13 +25,17 @@ module.exports = {
       tsconfig: "tsconfig.json",
       tsconfigOverride: {
         include: ["packages/orange-design"],
+        exclude: ["packages/orange-design/**/*.stories.tsx"],
       },
     }),
-    resolve(),
+    resolve({
+      extensions,
+    }),
     commonjs(),
     json(),
     babel({
       exclude: "node_modules/**",
+      extensions,
     }),
   ],
 };

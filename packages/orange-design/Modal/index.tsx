@@ -1,5 +1,4 @@
 import React from "react";
-import "./style/index.scss";
 
 interface PropsType {
   title: string;

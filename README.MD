@@ -2,6 +2,7 @@
 
 ```bash shell
 pnpm install
+pnpm start
 ```
 
 ### 代办
