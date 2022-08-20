@@ -1,0 +1,21 @@
+{
+  "compilerOptions":{
+    "module": "esnext",
+    "target": "esnext",
+    "declaration": true, 
+    "declarationDir": "types",
+    // "emitDeclarationOnly": true,
+    "noEmitOnError": true,
+    "strict": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "jsx":"react",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+  },
+  "include":["packages"],
+}
