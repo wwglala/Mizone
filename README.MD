@@ -5,6 +5,30 @@ pnpm install
 pnpm start
 ```
 
+### vscode settings
+
+```json
+{
+  "eslint.validate": [
+    "javascript",
+    "javascriptvue",
+    "typescript",
+    "typescriptreact",
+    "vue"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  "eslint.codeAction.showDocumentation": {
+    "enable": true
+  },
+  "editor.formatOnType": true,
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2
+}
+```
+
 ### 代办
 
 1. git 提交校验 husy、lint-staged
@@ -15,12 +39,3 @@ pnpm start
 
 1. pnpm add @storybook/react -D -w
 2. pnpm start
-
-### 问题
-
-1. storybook 不支持 workspace
-
-```
-https://github.com/storybookjs/storybook/issues/12995
-
-```

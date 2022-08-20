@@ -1,10 +1,10 @@
 import React from "react";
-
 interface PropsType {
   title: string;
   content: React.ReactNode;
 }
 
+console.log("====");
 export function Modal(props: PropsType) {
   return (
     <div className="a">

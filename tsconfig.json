@@ -1,8 +1,8 @@
 {
-  "compilerOptions":{
+  "compilerOptions": {
     "module": "esnext",
     "target": "esnext",
-    "declaration": true, 
+    "declaration": true,
     "declarationDir": "types",
     // "emitDeclarationOnly": true,
     "noEmitOnError": true,
@@ -13,9 +13,9 @@
     "strictPropertyInitialization": true,
     "skipLibCheck": true,
     "moduleResolution": "node",
-    "jsx":"react",
+    "jsx": "react",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true
   },
-  "include":["packages"],
+  "include": ["packages"]
 }

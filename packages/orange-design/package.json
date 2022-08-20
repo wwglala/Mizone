@@ -7,5 +7,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@orange-design/utils": "workspace:^1.0.0"
   }
 }
