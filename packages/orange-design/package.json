@@ -1,12 +1,20 @@
 {
-  "name": "@orange-design/components",
+  "name": "hahaha-ui",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "keywords": [],
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "typings": "types/index.d.ts",
+  "keywords": [
+    "hahaha-ui"
+  ],
+  "repository": {
+    "url": "https://github.com/wwglala/hahaha-ui"
+  },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@orange-design/utils": "workspace:^1.0.0"
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   }
 }
