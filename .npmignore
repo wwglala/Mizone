@@ -1,5 +1,12 @@
+.husky
+.storybook
 node_modules
-pnpm*
+.commitlintrc.js
+.eslintrc.js
+.prettierrc.js
 babel.config.js
 gulpfile.js
 rollup.config.js
+pnpm*
+
+

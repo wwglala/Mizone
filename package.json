@@ -1,9 +1,13 @@
 {
-  "private": true,
+  "name": "hahaha-ui",
   "packageManager": "pnpm@7.9.3",
+  "version": "0.0.1",
   "workspaces": [
     "packages/*"
   ],
+  "repository": {
+    "url": "https://github.com/wwglala/hahaha-ui"
+  },
   "main": "lib/index.js",
   "module": "es/index.js",
   "typings": "types/index.d.ts",
