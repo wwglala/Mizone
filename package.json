@@ -51,12 +51,9 @@
     "webpack": "^5.74.0"
   },
   "lint-staged": {
-    "packages/**/*.{js,jsx,tsx,ts}": [
-      "npm run lint",
-      "git add ."
-    ],
-    "packages/**/*.{scss}": [
-      "npm run lint",
+    "packages/**/*.{js,jsx,tsx,ts,scss}": [
+      "pnpm run lint-fix",
+      "pnpm run prettier",
       "git add ."
     ]
   }
