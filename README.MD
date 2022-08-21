@@ -29,6 +29,8 @@ pnpm start
 }
 ```
 
+### 提交 校验 husky，lint-staged
+
 ### 代办
 
 1. git 提交校验 husy、lint-staged
