@@ -19,6 +19,7 @@
     "@babel/preset-env": "^7.18.10",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
+    "@commitlint/config-conventional": "^17.0.3",
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-commonjs": "^22.0.2",
     "@rollup/plugin-json": "^4.1.0",
@@ -46,7 +47,8 @@
     "rollup-plugin-typescript2": "^0.33.0",
     "sass": "^1.54.5",
     "storybook-addon-sass-postcss": "^0.1.3",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "webpack": "^5.74.0"
   },
   "lint-staged": {
     "packages/**/*.{js,jsx,tsx,ts}": [
