@@ -9,3 +9,5 @@ export const OUT_PATH = path.resolve(__dirname, "../dist");
 export const extensions = [".tsx", ".ts", ".js", ".json"];
 
 export const UI_NAME = "orange-design";
+
+export const external = ["react", "react-dom"];

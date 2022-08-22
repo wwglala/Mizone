@@ -99,3 +99,4 @@ npm dist-tag add orange-design@x.x.x latest
 ### 代办
 
 1. 集成命令
+2. 工具类要不要打包进去
