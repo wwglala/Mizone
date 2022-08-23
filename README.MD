@@ -100,3 +100,6 @@ npm dist-tag add orange-design@x.x.x latest
 
 1. 集成命令
 2. 工具类要不要打包进去
+3. eslint prettier scope
+4. 单元测试
+5. changelog 自动生成

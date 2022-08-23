@@ -1,10 +1,13 @@
+import fs from "fs";
+import path from "path";
 import json from "@rollup/plugin-json";
 import babel from "@rollup/plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
 import { OUT_UI_PATH, OUT_PATH, UI_NAME, extensions, external } from "./PATH";
-import path from "path";
+// 不能包含注释！！！
+import tsConfig from "../tsconfig.json";
 
 export const config = {
   external,
@@ -15,11 +18,15 @@ export const config = {
       tsconfigOverride: {
         compilerOptions: {
           module: "ESNEXT",
-          // declarationDir: `${OUT_UI_PATH}/types`,
+          /**
+           * TODO: 略微调整，并解决workspace的问题可以解决  export * from "@hahaha-ui/components";
+           * plugin: rollup-plugin-replace
+           */
           // declaration: true,
+          // emitDeclarationOnly: true,
+          // declarationDir: `${OUT_UI_PATH}/types`,
         },
-        // include: [`${ROOT_PATH}/packages/${UI_NAME}`],
-        // exclude: ["**/*.stories.*"],
+        exclude: [...tsConfig.exclude, "**/*.stories.*"],
       },
     }),
     resolve({
