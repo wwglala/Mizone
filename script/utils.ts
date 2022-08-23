@@ -6,3 +6,7 @@ export const tryExt = (inputPath) => {
     fs.readFile(inputPath, `index${ext}`);
   }
 };
+
+export const copyFile = async (input, out) => {
+  await fs.copyFile(input, out);
+};

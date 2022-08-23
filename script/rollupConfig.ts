@@ -3,7 +3,7 @@ import babel from "@rollup/plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
-import { ROOT_PATH, OUT_PATH, UI_NAME, extensions, external } from "./PATH";
+import { OUT_UI_PATH, OUT_PATH, UI_NAME, extensions, external } from "./PATH";
 import path from "path";
 
 export const config = {
@@ -15,7 +15,7 @@ export const config = {
       tsconfigOverride: {
         compilerOptions: {
           module: "ESNEXT",
-          // declarationDir: `${OUT_PATH}/types`,
+          // declarationDir: `${OUT_UI_PATH}/types`,
           // declaration: true,
         },
         // include: [`${ROOT_PATH}/packages/${UI_NAME}`],
@@ -28,7 +28,7 @@ export const config = {
     commonjs(),
     json(),
     babel({
-      exclude: "node_modules/**",
+      exclude: ["node_modules/**"],
       extensions,
     }),
   ],
