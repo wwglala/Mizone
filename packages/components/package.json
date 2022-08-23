@@ -1,0 +1,13 @@
+{
+  "name": "@hahaha-ui/components",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.ts",
+  "module": "index.ts",
+  "peerDependencies": {
+    "react": "^@16.14.0",
+    "react-dom": "^@16.14.0"
+  },
+  "types": "index.d.ts",
+  "sideEffects": false
+}

@@ -4,8 +4,9 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
 import { ROOT_PATH, OUT_PATH, UI_NAME, extensions, external } from "./PATH";
+import path from "path";
 
-export const oneOfConfig = {
+export const config = {
   external,
   plugins: [
     typescript({
@@ -17,18 +18,43 @@ export const oneOfConfig = {
           // declarationDir: `${OUT_PATH}/types`,
           // declaration: true,
         },
-        include: [`${ROOT_PATH}/packages/${UI_NAME}`],
-        exclude: ["**/*.stories.*"],
+        // include: [`${ROOT_PATH}/packages/${UI_NAME}`],
+        // exclude: ["**/*.stories.*"],
       },
     }),
     resolve({
       extensions,
     }),
-    // commonjs(),
-    // json(),
-    // babel({
-    //   exclude: "node_modules/**",
-    //   extensions,
-    // }),
+    commonjs(),
+    json(),
+    babel({
+      exclude: "node_modules/**",
+      extensions,
+    }),
   ],
+};
+
+export const outConfig = {
+  es: {
+    module: "ESNext",
+    format: "esm",
+    output: {
+      name: "es",
+      path: path.join(OUT_PATH, UI_NAME, "es"),
+    },
+    bundle: {
+      path: `${UI_NAME}/es`,
+    },
+  },
+  cjs: {
+    module: "CommonJS",
+    format: "cjs",
+    output: {
+      name: "lib",
+      path: path.join(OUT_PATH, UI_NAME, "lib"),
+    },
+    bundle: {
+      path: `${UI_NAME}/lib`,
+    },
+  },
 };

@@ -1,13 +1,15 @@
 import path from "path";
 
+export const UI_NAME = "hahaha-ui";
+
 export const ROOT_PATH = path.resolve(__dirname, "../");
 
-export const UI_PATH = path.resolve(__dirname, "../packages/orange-design");
+export const BUILD_PATH = path.join(ROOT_PATH, "packages");
 
-export const OUT_PATH = path.resolve(__dirname, "../dist");
+export const UI_PATH = path.join(BUILD_PATH, UI_NAME);
+
+export const OUT_PATH = path.join(ROOT_PATH, "dist");
 
 export const extensions = [".tsx", ".ts", ".js", ".json"];
-
-export const UI_NAME = "orange-design";
 
 export const external = ["react", "react-dom"];

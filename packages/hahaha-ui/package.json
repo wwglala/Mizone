@@ -6,13 +6,14 @@
   "module": "es/index.js",
   "typings": "types/index.d.ts",
   "keywords": [
-    "hahaha-ui"
+    "hahaha-ui",
+    "hahaha"
   ],
   "repository": {
     "url": "https://github.com/wwglala/hahaha-ui"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "waooo",
+  "license": "MIT",
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0"

@@ -11,9 +11,6 @@
     "lint-fix": "pnpm run lint --fix",
     "prettier": "prettier -c --write ./packages/**"
   },
-  "dependencies": {
-    "@orange-design/utils": "workspace:^1.0.0"
-  },
   "devDependencies": {
     "@babel/core": "^7.18.10",
     "@babel/preset-env": "^7.18.10",
@@ -36,6 +33,7 @@
     "@typescript-eslint/parser": "^5.33.1",
     "eslint": "^8.22.0",
     "eslint-plugin-react": "^7.30.1",
+    "fast-glob": "^3.2.11",
     "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
     "gulp-concat": "^2.6.1",
@@ -59,5 +57,9 @@
       "pnpm run prettier",
       "git add ."
     ]
+  },
+  "dependencies": {
+    "@hahaha-ui/components": "workspace:^0.0.1",
+    "@hahaha-ui/utils": "workspace:^1.0.0"
   }
 }

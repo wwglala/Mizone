@@ -1,10 +1,8 @@
-import { UI_PATH, OUT_PATH } from "./PATH";
-import { buildComponents, buildEntry } from "./buildComponents";
-import { oneOfConfig } from "./rollup";
+import { buildPackages, buildEntry } from "./buildPackages";
 
 export async function build() {
   // await buildComponents(oneOfConfig, UI_PATH, OUT_PATH);
-  await buildEntry(UI_PATH, OUT_PATH);
+  await buildPackages();
   // const dirs = await fs.readdir(UI_PATH, { withFileTypes: true });
   // dirs
   //   .filter((dir) => dir.isDirectory())

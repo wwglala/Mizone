@@ -1,10 +1,47 @@
 import path from "path";
 import fs from "fs/promises";
 import { rollup } from "rollup";
-import { UI_PATH, OUT_PATH } from "./PATH";
-import { Dirent } from "node:fs";
 import typescript from "rollup-plugin-typescript2";
+import fg from "fast-glob";
+import { Dirent } from "node:fs";
 import { tryExt } from "./utils";
+import { UI_PATH, BUILD_PATH, OUT_PATH, UI_NAME } from "./PATH";
+import { config, outConfig } from "./rollupConfig";
+
+async function buildPackages() {
+  const input = await fg(
+    ["**/*.{ts,tsx,js,jsx}", "!**/*.stories.*", "!**/node_modules"],
+    {
+      cwd: BUILD_PATH,
+      absolute: true,
+      onlyFiles: true,
+    }
+  );
+
+  const rollupTask = await rollup({
+    ...config,
+    input,
+    treeshake: false,
+  });
+
+  await Promise.all(
+    Object.values(outConfig).map((sett) => {
+      return rollupTask.write({
+        format: sett.format as any,
+        dir: sett.output.path,
+        exports: sett.format === "cjs" ? "named" : undefined,
+        preserveModules: true,
+        preserveModulesRoot: UI_PATH,
+        sourcemap: true,
+        entryFileNames: (chunk) => {
+          const basename = path.basename(chunk.facadeModuleId as string);
+          const ext = path.extname(basename) === "json" ? "json" : "js";
+          return `[name].${ext}`;
+        },
+      });
+    })
+  );
+}
 
 const isJavaScriptAsset = (filename: string) => {
   const include = [/\.(ts|js)x?/, /\.json/];
@@ -98,4 +135,4 @@ async function buildEntry(inputPath, outPath) {
   });
 }
 
-export { buildComponents, buildEntry };
+export { buildComponents, buildEntry, buildPackages };
