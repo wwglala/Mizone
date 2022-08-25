@@ -9,13 +9,13 @@ import { BUILD_PATH, OUT_UI_PATH, ROOT_PATH, UI_NAME, UI_PATH } from "./PATH";
 async function genDts() {
   const project = new Project({
     compilerOptions: {
-      // declaration: true,
+      declaration: true,
       emitDeclarationOnly: true,
       baseUrl: ROOT_PATH,
       outDir: path.join(OUT_UI_PATH, "types"),
     },
     skipAddingFilesFromTsConfig: true,
-    tsConfigFilePath: path.join(ROOT_PATH, "tsconfig.dts.json"),
+    tsConfigFilePath: path.join(ROOT_PATH, "tsconfig.json"),
   });
 
   // await project.emit({

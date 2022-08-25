@@ -1,6 +1,7 @@
 import path from "path";
 import { rollup } from "rollup";
 import fg from "fast-glob";
+import chalk from "chalk";
 
 import { UI_PATH, BUILD_PATH, OUT_UI_PATH } from "./PATH";
 import { config, outConfig } from "./rollupConfig";
@@ -13,6 +14,7 @@ async function buildPackages() {
       "!**/*.stories.*",
       "!**/node_modules",
       "!**/package.json",
+      "!**/*.d.ts",
     ],
     {
       cwd: BUILD_PATH,
@@ -21,29 +23,33 @@ async function buildPackages() {
     }
   );
 
-  const rollupTask = await rollup({
-    ...config,
-    input,
-    // treeshake: false,
-  });
+  try {
+    const rollupTask = await rollup({
+      ...config,
+      input,
+      // treeshake: false,
+    });
 
-  await Promise.all(
-    Object.values(outConfig).map((sett) => {
-      return rollupTask.write({
-        format: sett.format as any,
-        dir: sett.output.path,
-        exports: sett.format === "cjs" ? "named" : undefined,
-        preserveModules: true,
-        preserveModulesRoot: UI_PATH,
-        sourcemap: true,
-        entryFileNames: (chunk) => {
-          const basename = path.basename(chunk.facadeModuleId as string);
-          const ext = path.extname(basename) === ".json" ? ".json" : ".js";
-          return `[name].js`;
-        },
-      });
-    })
-  );
+    await Promise.all(
+      Object.values(outConfig).map((sett) => {
+        return rollupTask.write({
+          format: sett.format as any,
+          dir: sett.output.path,
+          exports: sett.format === "cjs" ? "named" : undefined,
+          preserveModules: true,
+          preserveModulesRoot: UI_PATH,
+          sourcemap: true,
+          entryFileNames: (chunk) => {
+            const basename = path.basename(chunk.facadeModuleId as string);
+            const ext = path.extname(basename) === ".json" ? ".json" : ".js";
+            return `[name].js`;
+          },
+        });
+      })
+    );
+  } catch (e) {
+    console.log(e.message);
+  }
 
   await copyFile(
     path.join(UI_PATH, "package.json"),

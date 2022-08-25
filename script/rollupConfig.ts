@@ -13,24 +13,15 @@ import tsConfig from "../tsconfig.json";
 export const config = {
   external,
   plugins: [
-    // replace({
-    //   values: {
-    //     "@hahaha-ui": "../",
-    //   },
-    // }),
+    replace({
+      preventAssignment: true,
+      __DEV__: "true",
+    }),
     resolve({
       extensions,
     }),
     typescript({
-      // useTsconfigDeclarationDir: true,
-      // tsconfig: "tsconfig.json",
       tsconfigOverride: {
-        compilerOptions: {
-          module: "ESNEXT",
-          /**
-           * plugin: rollup-plugin-replace
-           */
-        },
         exclude: [...tsConfig.exclude, "**/*.stories.*"],
       },
     }),
@@ -39,6 +30,8 @@ export const config = {
     babel({
       exclude: ["node_modules/**"],
       extensions,
+      babelHelpers: "runtime",
+      plugins: [["@babel/plugin-transform-runtime", { corejs: 3 }]],
     }),
   ],
 };

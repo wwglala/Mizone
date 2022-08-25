@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
+    "module": "ESNext",
     "target": "es6",
     "noEmitOnError": true,
     "strict": false,
@@ -20,6 +20,5 @@
     "lib": ["ESNext", "DOM"]
   },
   "include": ["packages/**/*.ts", "packages/**/*.tsx"],
-  "exclude": ["node_modules", "dist", "**/gulpfile.ts"],
-  "ps": "不要有注释！！！"
+  "exclude": ["node_modules", "dist", "**/gulpfile.ts"]
 }

@@ -14,4 +14,4 @@ export const OUT_UI_PATH = path.join(OUT_PATH, UI_NAME);
 
 export const extensions = [".tsx", ".ts", ".js", ".json"];
 
-export const external = ["react", "react-dom"];
+export const external = ["react", "react-dom", "@babel/runtime"];
