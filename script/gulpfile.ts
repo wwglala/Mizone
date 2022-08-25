@@ -6,9 +6,5 @@ import { handleScss, mergeCss } from "./handleScss";
 
 export default series(
   removeBeforeFold,
-  parallel(
-    buildPackages,
-    genDts
-    // series(handleScss, mergeCss)
-  )
+  parallel(buildPackages, genDts, series(handleScss, mergeCss))
 );
