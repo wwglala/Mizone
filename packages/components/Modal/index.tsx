@@ -12,3 +12,7 @@ export function Modal(props: PropsType) {
     </div>
   );
 }
+
+export function Test() {
+  return <div>123123</div>;
+}

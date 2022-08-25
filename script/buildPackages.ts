@@ -24,7 +24,7 @@ async function buildPackages() {
   const rollupTask = await rollup({
     ...config,
     input,
-    treeshake: false,
+    // treeshake: false,
   });
 
   await Promise.all(

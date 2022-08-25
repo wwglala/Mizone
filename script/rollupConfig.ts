@@ -5,6 +5,7 @@ import babel from "@rollup/plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
+import replace from "@rollup/plugin-replace";
 import { OUT_UI_PATH, OUT_PATH, UI_NAME, extensions, external } from "./PATH";
 // 不能包含注释！！！
 import tsConfig from "../tsconfig.json";
@@ -12,6 +13,14 @@ import tsConfig from "../tsconfig.json";
 export const config = {
   external,
   plugins: [
+    // replace({
+    //   values: {
+    //     "@hahaha-ui": "../",
+    //   },
+    // }),
+    resolve({
+      extensions,
+    }),
     typescript({
       // useTsconfigDeclarationDir: true,
       // tsconfig: "tsconfig.json",
@@ -19,18 +28,11 @@ export const config = {
         compilerOptions: {
           module: "ESNEXT",
           /**
-           * TODO: 略微调整，并解决workspace的问题可以解决  export * from "@hahaha-ui/components";
            * plugin: rollup-plugin-replace
            */
-          // declaration: true,
-          // emitDeclarationOnly: true,
-          // declarationDir: `${OUT_UI_PATH}/types`,
         },
         exclude: [...tsConfig.exclude, "**/*.stories.*"],
       },
-    }),
-    resolve({
-      extensions,
     }),
     commonjs(),
     json(),
@@ -49,9 +51,6 @@ export const outConfig = {
       name: "es",
       path: path.join(OUT_PATH, UI_NAME, "es"),
     },
-    bundle: {
-      path: `${UI_NAME}/es`,
-    },
   },
   cjs: {
     module: "CommonJS",
@@ -59,9 +58,6 @@ export const outConfig = {
     output: {
       name: "lib",
       path: path.join(OUT_PATH, UI_NAME, "lib"),
-    },
-    bundle: {
-      path: `${UI_NAME}/lib`,
     },
   },
 };

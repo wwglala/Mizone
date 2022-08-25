@@ -1,6 +1,6 @@
 import React from "react";
-import { name } from "./say/a";
+import { getName } from "@hahaha-ui/utils";
 
 export function Button() {
-  return <div className="a">{name}</div>;
+  return <div className="a">{getName()}</div>;
 }
