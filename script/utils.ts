@@ -2,7 +2,7 @@ import fs from "fs/promises";
 import chalk from "chalk";
 import consola from "consola";
 import { extensions } from "./PATH";
-import uiPackages from "../packages/hahaha-ui/package.json";
+import uiPackages from "../packages/mizone/package.json";
 
 export const tryExt = (inputPath) => {
   for (const ext of extensions) {

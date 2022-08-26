@@ -1,5 +1,5 @@
 import React, { ReactNode, useContext } from "react";
-import { getName } from "@hahaha-ui/utils";
+import { getName } from "@mizone/utils";
 import cx from "classnames";
 import { styleContext } from "../config-provider/styleContext";
 

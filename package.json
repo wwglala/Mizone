@@ -7,7 +7,7 @@
     "lint": "eslint ./packages --ext .js,.jsx,.ts,.tsx",
     "lint-fix": "pnpm run lint --fix",
     "prettier": "prettier -c --write ./packages/**",
-    "publish:yalc": "pnpm build && yalc push dist/hahaha-ui",
+    "publish:yalc": "pnpm build && yalc push dist/mizone",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -79,8 +79,8 @@
     ]
   },
   "dependencies": {
-    "@hahaha-ui/components": "workspace:^0.0.1",
-    "@hahaha-ui/scripts": "workspace:^0.0.1",
-    "@hahaha-ui/utils": "workspace:^1.0.0"
+    "@mizone/components": "workspace:^0.0.1",
+    "@mizone/scripts": "workspace:^0.0.1",
+    "@mizone/utils": "workspace:^1.0.0"
   }
 }

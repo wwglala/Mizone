@@ -1,6 +1,6 @@
 import React, { createContext } from "react";
 
-export let defaultPrefixCls = "hahaha-ui";
+export let defaultPrefixCls = "mizone";
 
 export const config = {
   getPrefixCls: (suffixCls: string, customPrefixCls?: string) => {

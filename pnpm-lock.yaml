@@ -11,9 +11,9 @@ importers:
       '@babel/preset-typescript': ^7.18.6
       '@babel/runtime': ^7.18.9
       '@commitlint/config-conventional': ^17.0.3
-      '@hahaha-ui/components': workspace:^0.0.1
-      '@hahaha-ui/scripts': workspace:^0.0.1
-      '@hahaha-ui/utils': workspace:^1.0.0
+      '@mizone/components': workspace:^0.0.1
+      '@mizone/scripts': workspace:^0.0.1
+      '@mizone/utils': workspace:^1.0.0
       '@rollup/plugin-babel': ^5.3.1
       '@rollup/plugin-commonjs': ^22.0.2
       '@rollup/plugin-json': ^4.1.0
@@ -66,9 +66,9 @@ importers:
       typescript: ^4.7.4
       webpack: ^5.74.0
     dependencies:
-      '@hahaha-ui/components': link:packages/components
-      '@hahaha-ui/scripts': link:script
-      '@hahaha-ui/utils': link:packages/utils
+      '@mizone/components': link:packages/components
+      '@mizone/scripts': link:script
+      '@mizone/utils': link:packages/utils
     devDependencies:
       '@babel/core': registry.npmmirror.com/@babel/core/7.18.13
       '@babel/plugin-transform-runtime': registry.npmmirror.com/@babel/plugin-transform-runtime/7.18.10_@babel+core@7.18.13
@@ -135,7 +135,7 @@ importers:
     dependencies:
       classnames: registry.npmmirror.com/classnames/2.3.1
 
-  packages/hahaha-ui:
+  packages/mizone:
     specifiers:
       classnames: ^2.3.1
     dependencies:
@@ -4230,7 +4230,7 @@ packages:
     version: 3.7.4
     dependencies:
       '@types/eslint': registry.npmmirror.com/@types/eslint/8.4.6
-      '@types/estree': registry.npmmirror.com/@types/estree/1.0.0
+      '@types/estree': registry.npmmirror.com/@types/estree/0.0.51
     dev: true
 
   registry.npmmirror.com/@types/eslint/8.4.6:
@@ -4238,7 +4238,7 @@ packages:
     name: '@types/eslint'
     version: 8.4.6
     dependencies:
-      '@types/estree': registry.npmmirror.com/@types/estree/1.0.0
+      '@types/estree': registry.npmmirror.com/@types/estree/0.0.51
       '@types/json-schema': registry.npmmirror.com/@types/json-schema/7.0.11
     dev: true
 

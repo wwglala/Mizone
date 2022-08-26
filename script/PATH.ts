@@ -1,6 +1,6 @@
 import path from "path";
 
-export const UI_NAME = "hahaha-ui";
+export const UI_NAME = "mizone";
 
 export const ROOT_PATH = path.resolve(__dirname, "../");
 

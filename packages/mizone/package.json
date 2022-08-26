@@ -1,16 +1,16 @@
 {
-  "name": "hahaha-ui",
+  "name": "mizone",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
   "typings": "types/index.d.ts",
   "keywords": [
-    "hahaha-ui",
-    "hahaha"
+    "mizone-ui",
+    "mizone"
   ],
   "repository": {
-    "url": "https://github.com/wwglala/hahaha-ui"
+    "url": "https://github.com/wwglala/Mizone"
   },
   "author": "waooo",
   "license": "MIT",

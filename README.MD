@@ -69,7 +69,7 @@ pnpm publish:yalc
 
 添加：
 
-yalc add hahaha-ui
+yalc add mizone
 
 更新：
 
@@ -103,7 +103,7 @@ npm publish
 5. 回退方案：
 
 ```
-npm dist-tag add orange-design@x.x.x latest
+npm dist-tag add mizone@x.x.x latest
 ```
 
 ### ui 展示

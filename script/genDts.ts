@@ -27,7 +27,7 @@ async function genDts() {
   //   //       if (!file) return sourceFile;
   //   //       const content = sourceFile
   //   //         .getFullText()
-  //   //         .replace(/@hahaha-ui/g, "hahaha-ui");
+  //   //         .replace(/@mizone/g, "mizone");
   //   //       console.log("=====");
 
   //   //       return ts.createSourceFile(
@@ -54,7 +54,7 @@ async function genDts() {
           });
           await writeFile(
             filepath,
-            file.getText().replace(/@hahaha-ui/g, "."),
+            file.getText().replace(/@mizone/g, "."),
             "utf8"
           );
         })
