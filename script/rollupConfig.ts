@@ -6,12 +6,13 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
 import replace from "@rollup/plugin-replace";
-import { OUT_UI_PATH, OUT_PATH, UI_NAME, extensions, external } from "./PATH";
+import { getExternals } from "./utils";
+import { OUT_UI_PATH, OUT_PATH, UI_NAME, extensions } from "./PATH";
 // 不能包含注释！！！
 import tsConfig from "../tsconfig.json";
 
 export const config = {
-  external,
+  external: getExternals(),
   plugins: [
     replace({
       preventAssignment: true,
@@ -30,8 +31,8 @@ export const config = {
     babel({
       exclude: ["node_modules/**"],
       extensions,
-      babelHelpers: "runtime",
-      plugins: [["@babel/plugin-transform-runtime", { corejs: 3 }]],
+      // babelHelpers: "runtime",
+      // plugins: [["@babel/plugin-transform-runtime", { corejs: 3 }]],
     }),
   ],
 };

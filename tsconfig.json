@@ -20,5 +20,5 @@
     "lib": ["ESNext", "DOM"]
   },
   "include": ["packages/**/*.ts", "packages/**/*.tsx"],
-  "exclude": ["node_modules", "dist", "**/gulpfile.ts"]
+  "exclude": ["node_modules", "dist", "**/gulpfile.ts", "**/*.stories.*"]
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 interface PropsType {
   title: string;
   content: React.ReactNode;
@@ -6,7 +6,7 @@ interface PropsType {
 
 export function Modal(props: PropsType) {
   return (
-    <div className="a">
+    <div>
       <h1>{props.title}</h1>
       <p>{props.content}</p>
     </div>

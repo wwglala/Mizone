@@ -54,7 +54,7 @@ async function genDts() {
           });
           await writeFile(
             filepath,
-            file.getText().replace(/@hahaha-ui/g, "hahaha-ui"),
+            file.getText().replace(/@hahaha-ui/g, "."),
             "utf8"
           );
         })

@@ -58,7 +58,22 @@ pnpm start
 
 本地测试 yalc
 
-https://github.com/wclr/yalc
+> https://github.com/wclr/yalc
+
+```bash shell
+npm i yalc -g
+pnpm publish:yalc
+```
+
+#### other registry
+
+添加：
+
+yalc add hahaha-ui
+
+更新：
+
+yalc update
 
 #### 版本规范（tag、aplha、beta、latest）
 
@@ -99,7 +114,14 @@ npm dist-tag add orange-design@x.x.x latest
 ### 代办
 
 1. 集成命令
-2. 工具类要不要打包进去
-3. eslint prettier scope
-4. 单元测试
-5. changelog 自动生成
+2. 单元测试
+3. changelog 自动生成
+
+### 其他：
+
+1. https://www.npmjs.com/package/jiti
+
+   > node 支持 ts 和 esmodule
+
+2. https://www.npmjs.com/package/@esbuild-kit/cjs-loader
+   > 转换 esm 和 ts 为 commonjs

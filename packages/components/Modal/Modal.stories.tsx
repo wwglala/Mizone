@@ -16,4 +16,4 @@ Primary.args = {
   title: "lalala",
   content: "我是爸爸",
 };
-Primary.storyName = "I am the primary";
+Primary.storyName = "basic";
