@@ -8,6 +8,11 @@
     "react": "^@16.14.0",
     "react-dom": "^@16.14.0"
   },
-  "types": "index.d.ts",
-  "sideEffects": false
+  "sideEffects": [
+    "*.scss",
+    "*.css"
+  ],
+  "dependencies": {
+    "classnames": "^2.3.1"
+  }
 }

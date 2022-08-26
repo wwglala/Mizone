@@ -1,7 +1,7 @@
 ### 启动
 
 ```bash shell
-pnpm install
+pnpm i
 pnpm start
 ```
 
@@ -108,8 +108,17 @@ npm dist-tag add orange-design@x.x.x latest
 
 ### ui 展示
 
-1. pnpm add @storybook/react -D -w
-2. pnpm start
+> https://github.com/storybookjs/storybook/issues/15764
+
+解决办法：
+
+1. 删除 node_modules
+2. 重置 package.json
+3. npm storybook init
+4. 删除 node_modules
+5. 切换 package.json
+6. pnpm i
+7. pnpm start
 
 ### 代办
 
