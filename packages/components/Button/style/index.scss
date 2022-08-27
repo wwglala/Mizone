@@ -1,6 +1,5 @@
-$name: "mizone";
-// wwg
+@use '../../theme/index.scss' as *;
 
-.#{$name}-btn {
+.#{$prefix}-btn--actived {
   background-color: antiquewhite;
 }

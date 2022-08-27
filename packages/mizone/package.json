@@ -14,9 +14,6 @@
   },
   "author": "waooo",
   "license": "MIT",
-  "dependencies": {
-    "classnames": "^2.3.1"
-  },
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
