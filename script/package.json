@@ -2,6 +2,9 @@
   "name": "@mizone/scripts",
   "version": "0.0.1",
   "private": true,
+  "bin": {
+    "mizone": "./index.js"
+  },
   "scripts": {
     "start": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
   },
@@ -9,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@esbuild-kit/cjs-loader": "^2.3.3"
+    "@esbuild-kit/cjs-loader": "^2.3.3",
+    "commander": "^9.4.0",
+    "inquirer": "^9.1.0"
   }
 }
