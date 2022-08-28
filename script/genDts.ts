@@ -1,10 +1,11 @@
 import path from "path";
+import fs from "fs";
 import fg from "fast-glob";
 import clean from "gulp-clean";
 import { src, dest } from "gulp";
 import { Project, SourceFile } from "ts-morph";
 import { mkdir, writeFile } from "fs/promises";
-import { BUILD_PATH, OUT_UI_PATH, ROOT_PATH, UI_NAME, UI_PATH } from "./PATH";
+import { BUILD_PATH, OUT_UI_PATH, ROOT_PATH, UI_NAME } from "./PATH";
 
 async function genDts() {
   const project = new Project({
@@ -52,9 +53,16 @@ async function genDts() {
           await mkdir(path.dirname(filepath), {
             recursive: true,
           });
+          // TODO: @mizone 替换相对目录
+          // const dirname = path.dirname(filepath);
+          // const more = dirname.includes(UI_NAME) ? UI_NAME : "";
+          // let relativePath = path
+          //   .relative(dirname, path.join(OUT_UI_PATH, more))
+          //   .replace(/\\/g, "/");
+
           await writeFile(
             filepath,
-            file.getText().replace(/@mizone/g, "."),
+            file.getText().replace(new RegExp(`@${UI_NAME}`, "g"), "."),
             "utf8"
           );
         })
@@ -71,7 +79,7 @@ async function genDts() {
 }
 
 async function addSourceFiles(project: Project) {
-  const filePaths = await fg(["**/*.ts?(x)", "!*.stories.*"], {
+  const filePaths = await fg(["**/*.ts?(x)", "!**/*.stories.*"], {
     cwd: BUILD_PATH,
     absolute: true,
     onlyFiles: true,

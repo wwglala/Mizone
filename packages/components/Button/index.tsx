@@ -1,6 +1,6 @@
-import React, { ReactNode, useContext } from "react";
-import { styleContext } from "../config-provider/styleContext";
-import { bem } from "@mizone/utils";
+import React, { ReactNode } from "react";
+import { cx } from "@mizone/utils";
+import { useBem } from "../utils/hooks/useBem";
 
 interface ButtonProps {
   children?: ReactNode;
@@ -8,10 +8,10 @@ interface ButtonProps {
 
 export function Button(props: ButtonProps) {
   const { children } = props;
-  const { getPrefixCls } = useContext(styleContext);
+  const bem = useBem();
 
   return (
-    <div className={bem(getPrefixCls("btn"), { actived: true })}>
+    <div className={cx(bem("button"), bem("button", { primary: true }))}>
       {children}
     </div>
   );

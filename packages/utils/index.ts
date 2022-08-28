@@ -1,4 +1,4 @@
-type Modifiers = Record<string, any>;
+export type Modifiers = Record<string, any>;
 export const bem = (
   block: string,
   element?: string | Modifiers,
@@ -30,3 +30,26 @@ export const cx = (...args: any[]): string => {
     })
     .join(" ");
 };
+
+type Fn = (...args: any[]) => any;
+export const curry = (fn: Fn) => {
+  const needArgsLen = fn.length;
+  return function curried(...args: any[]) {
+    if (args.length >= needArgsLen) {
+      return fn(...args);
+    } else {
+      return (...args2: any[]) => curried(...args, ...args2);
+    }
+  };
+};
+
+export const compose = (...fns: Fn[]) => {
+  return (...args: any[]) => {
+    return fns.reduceRight((params, fn) => fn(...params), args);
+  };
+};
+
+export const track = curry((log: string, source: any) => {
+  console.log(log, source);
+  return source;
+});
