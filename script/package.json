@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "bin": {
-    "mizone": "./index.js"
+    "mizone": "./bin.js"
   },
   "scripts": {
     "start": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"

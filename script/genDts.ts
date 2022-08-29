@@ -19,29 +19,6 @@ async function genDts() {
     tsConfigFilePath: path.join(ROOT_PATH, "tsconfig.json"),
   });
 
-  // await project.emit({
-  // emitOnlyDtsFiles: true,
-  //   // customTransformers: {
-  //   //   afterDeclarations: [
-  //   //     (context) => (sourceFile: any) => {
-  //   //       const file = sourceFile.getSourceFile();
-  //   //       if (!file) return sourceFile;
-  //   //       const content = sourceFile
-  //   //         .getFullText()
-  //   //         .replace(/@mizone/g, "mizone");
-  //   //       console.log("=====");
-
-  //   //       return ts.createSourceFile(
-  //   //         file.fileName,
-  //   //         content,
-  //   //         ScriptTarget.ESNext
-  //   //       );
-
-  //   //       return sourceFile;
-  //   //     },
-  //   //   ],
-  //   // },
-  // });
   const sourceFiles = await addSourceFiles(project);
   await Promise.all(
     sourceFiles.map(async (sourceFile) => {
@@ -53,13 +30,20 @@ async function genDts() {
           await mkdir(path.dirname(filepath), {
             recursive: true,
           });
-          // TODO: @mizone 替换相对目录
-          // const dirname = path.dirname(filepath);
-          // const more = dirname.includes(UI_NAME) ? UI_NAME : "";
-          // let relativePath = path
-          //   .relative(dirname, path.join(OUT_UI_PATH, more))
-          //   .replace(/\\/g, "/");
-
+          const dirname = path.dirname(filepath);
+          const mizoneDir = path.join(OUT_UI_PATH, "types", "mizone");
+          const isMizoneDir = !path
+            .relative(dirname, mizoneDir)
+            .includes(UI_NAME);
+          let relativePath = "";
+          if (isMizoneDir) {
+            relativePath =
+              path.relative(dirname, mizoneDir).replace(/\\/g, "/") || ".";
+          } else {
+            relativePath = path
+              .relative(dirname, path.join(OUT_UI_PATH, "types"))
+              .replace(/\\/g, "/");
+          }
           await writeFile(
             filepath,
             file.getText().replace(new RegExp(`@${UI_NAME}`, "g"), "."),
