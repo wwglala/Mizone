@@ -9,7 +9,14 @@
     "prettier": "prettier -c --write ./packages/**",
     "publish:yalc": "pnpm build && yalc push dist/mizone",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "version:alpha": "cd packages/mizone && npm version prerelease --preid=alpha",
+    "version:beta": "cd packages/mizone && npm version prerelease --preid=beta"
+  },
+  "dependencies": {
+    "@mizone/components": "workspace:^0.0.1",
+    "@mizone/scripts": "workspace:^0.0.1",
+    "@mizone/utils": "workspace:^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",
@@ -18,6 +25,7 @@
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "@babel/runtime": "^7.18.9",
+    "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.0.3",
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-commonjs": "^22.0.2",
@@ -77,10 +85,5 @@
       "pnpm run prettier",
       "git add ."
     ]
-  },
-  "dependencies": {
-    "@mizone/components": "workspace:^0.0.1",
-    "@mizone/scripts": "workspace:^0.0.1",
-    "@mizone/utils": "workspace:^1.0.0"
   }
 }

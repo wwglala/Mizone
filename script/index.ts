@@ -6,17 +6,68 @@ import chalk from "chalk";
 import { Command } from "commander";
 import { BUILD_PATH } from "./PATH";
 
-const program = new Command();
-program.name("@mizone/scripts").description("CLI to mizone").version("0.0.1");
-
-program
-  .command("create")
-  .description("working to create your component")
-  .action(async () => {
-    await emitQuestion();
+inquirer
+  .prompt([
+    {
+      type: "list",
+      name: "operator",
+      message: "请选择你的操作",
+      choices: [
+        {
+          value: 1,
+          name: "创建组件",
+        },
+        {
+          value: 2,
+          name: "生成changelog",
+        },
+        {
+          value: 3,
+          name: "升级alpha",
+        },
+        {
+          value: 4,
+          name: "升级bata",
+        },
+      ],
+    },
+  ])
+  .then(async (answers) => {
+    const { operator } = answers;
+    switch (operator) {
+      case 1:
+        await createComponent();
+      default:
+        break;
+    }
   });
 
-program.parse();
+function createComponent() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "componentName",
+        message: "请输入要创建的组件名称",
+      },
+    ])
+    .then(async (answer) => {
+      const { componentName } = answer;
+      await createTemplate(path.join(BUILD_PATH, "components"), componentName);
+    });
+}
+
+// const program = new Command();
+// program.name("@mizone/scripts").description("CLI to mizone").version("0.0.1");
+
+// program
+//   .command("create")
+//   .description("working to create your component")
+//   .action(async () => {
+//     await emitQuestion();
+//   });
+
+// program.parse();
 
 async function createTemplate(foldPath: string, componentName: string) {
   const name = componentName[0].toLocaleUpperCase() + componentName.slice(1);
@@ -69,20 +120,5 @@ export function ${name}(props: ${name}Props) {
     )
     .then(() => {
       consola.success(chalk.bgCyan(`${name}创建成功`));
-    });
-}
-
-function emitQuestion() {
-  return inquirer
-    .prompt([
-      {
-        type: "input",
-        name: "componentName",
-        message: "请输入要创建的组件名称",
-      },
-    ])
-    .then(async (answers) => {
-      const { componentName } = answers;
-      await createTemplate(path.join(BUILD_PATH, "components"), componentName);
     });
 }
