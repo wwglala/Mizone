@@ -1,17 +1,17 @@
 import React, { ReactNode } from "react";
-import { styleContext, config, defaultPrefixCls } from "./styleContext";
+import { ThemeContext, config, defaultPrefixCls } from "./themeContext";
+import { SizeContext, SizeType } from "./sizeContext";
 
 export interface ConfigProviderProps {
   prefixCls?: string;
   children?: ReactNode;
+  size?: SizeType;
 }
 
-const Provider = styleContext.Provider;
-
 export default function ConfigProvider(props: ConfigProviderProps) {
-  const { children, prefixCls } = props;
+  const { children, prefixCls, size = "stretch" } = props;
   return (
-    <Provider
+    <ThemeContext.Provider
       value={{
         ...config,
         getPrefixCls(suffixCls: string, customPrefixCls?: string) {
@@ -20,7 +20,7 @@ export default function ConfigProvider(props: ConfigProviderProps) {
         },
       }}
     >
-      {children}
-    </Provider>
+      <SizeContext.Provider value={size}>{children}</SizeContext.Provider>
+    </ThemeContext.Provider>
   );
 }

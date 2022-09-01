@@ -1,3 +1,23 @@
 $prefix: "mizone";
 
 $primary: rgb(0, 122, 255);
+$normalBg: #fff;
+
+$height-stretch: 32px;
+$height-large: 40px;
+$height-middle: 32px;
+$height-small: 24px;
+$border-shadow: 0 0 0 1px rgba(0, 0, 0, 0.07), 0 1px 0 0 rgba(0, 0, 0, 0.07);
+$box-border-raduis: 5px;
+$box-padding: 5px;
+$box-active-color: #33333380;
+$box-focus-border: 0 0 1px 1px rgba(0, 0, 0, 0.07), 0 0 0 2px $primary;
+
+:root {
+  --prefix: prefix;
+  --primary: $primary;
+  --height-stretch: $height-stretch;
+  --height-large: $height-large;
+  --height-small: $height-small;
+  --border-shadow: $border-shadow;
+}

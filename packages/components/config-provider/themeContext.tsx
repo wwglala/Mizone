@@ -19,4 +19,4 @@ export const config = {
   },
 };
 
-export const styleContext = createContext(config);
+export const ThemeContext = createContext(config);
