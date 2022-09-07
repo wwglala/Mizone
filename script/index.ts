@@ -77,7 +77,10 @@ async function createTemplate(foldPath: string, componentName: string) {
   await fs.mkdir(dist);
   await fs.mkdir(style);
   await fs.mkdir(stories);
-  await fs.writeFile(path.join(style, "index.scss"), "");
+  await fs.writeFile(
+    path.join(style, "index.scss"),
+    `@use '../../theme/index.scss' as *;`
+  );
   await fs.writeFile(
     path.join(stories, `${name}.stories.tsx`),
     `
@@ -94,14 +97,11 @@ export default {
   }
 } as ComponentMeta<typeof ${name}>;
 
-const Template: ComponentStory<typeof ${name}> = (args) => <${name} {...args} />;
+export const Template: ComponentStory<typeof ${name}> = (args) => <${name} {...args} />;
 
-export const Primary = Template.bind({});
+Template.args = {
 
-Primary.args = {
-  children: "xxxx",
 };
-Primary.storyName = "xxx";
   `
   );
   await fs
@@ -119,8 +119,10 @@ export function ${name}(props: ${name}Props) {
     <div>${name}</div>
   );
 }
+${name}.displayName = "${name}"
   `
     )
+
     .then(() => {
       consola.success(chalk.bgCyan(`${name}创建成功`));
     });

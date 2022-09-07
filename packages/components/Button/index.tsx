@@ -1,5 +1,6 @@
 import React, {
   ButtonHTMLAttributes,
+  forwardRef,
   MouseEventHandler,
   ReactNode,
 } from "react";
@@ -17,28 +18,34 @@ export interface ButtonProps
   type?: ButtonType;
 }
 
-export function Button(props: ButtonProps) {
-  const {
-    children,
-    className,
-    onClick,
-    size: outSize,
-    type = "default",
-  } = props;
-  const bem = useBem();
-  const size = useSize(outSize);
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (props, forwardedRef) => {
+    const {
+      children,
+      className,
+      onClick,
+      size: outSize,
+      type = "default",
+      ...rest
+    } = props;
+    const bem = useBem();
+    const size = useSize(outSize);
 
-  return (
-    <button
-      className={cx(
-        className,
-        bem("button"),
-        bem("button", { [size]: size }),
-        bem("button", { [type]: type })
-      )}
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  );
-}
+    return (
+      <button
+        ref={forwardedRef}
+        className={cx(
+          className,
+          bem("button"),
+          bem("button", { [size]: size }),
+          bem("button", { [type]: type })
+        )}
+        onClick={onClick}
+        {...rest}
+      >
+        {children}
+      </button>
+    );
+  }
+);
+Button.displayName = "Button";

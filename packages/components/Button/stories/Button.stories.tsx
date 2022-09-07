@@ -3,9 +3,11 @@ import { Button, ButtonProps } from "../index";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import "../style/index.scss";
 
+// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: "components/Button",
   Component: Button,
+  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     size: {
       options: ["small", "middle", "large", "stretch"],
@@ -18,10 +20,12 @@ export default {
   },
 } as ComponentMeta<typeof Button>;
 
+// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 export const Template: ComponentStory<typeof Button> = (args) => (
   <Button {...args} />
 );
 
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
 Template.args = {
   children: "basic",
   onClick() {},

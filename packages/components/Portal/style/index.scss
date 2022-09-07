@@ -1,0 +1,6 @@
+@use '../../theme/index.scss' as *;
+.#{$prefix} {
+  &-portal {
+    position: fixed;
+  }
+}

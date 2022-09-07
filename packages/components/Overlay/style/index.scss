@@ -1,0 +1,11 @@
+@use '../../theme/index.scss' as *;
+
+.#{$prefix} {
+  &-overlay {
+    min-width: max-content;
+    min-height: max-content;
+    box-shadow: $box-overlay-shadow;
+    background-color: $normalBg;
+    border-radius: $box-border-raduis;
+  }
+}
