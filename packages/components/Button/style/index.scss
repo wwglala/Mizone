@@ -21,6 +21,10 @@
       background-color: $primary;
       color: #fff;
     }
+    &--dashed {
+      border: 1px dashed #333;
+      box-shadow: none;
+    }
     &--stretch {
       width: 100%;
       height: $height-stretch;

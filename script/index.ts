@@ -87,8 +87,11 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import "../style/index.scss";
 
 export default {
-  title: "${name}",
-  Component: <${name}>wwg</${name}>,
+  title: "components/${name}",
+  Component: ${name},
+  argTypes:{
+    
+  }
 } as ComponentMeta<typeof ${name}>;
 
 const Template: ComponentStory<typeof ${name}> = (args) => <${name} {...args} />;
@@ -96,7 +99,7 @@ const Template: ComponentStory<typeof ${name}> = (args) => <${name} {...args} />
 export const Primary = Template.bind({});
 
 Primary.args = {
-children: "xxxx",
+  children: "xxxx",
 };
 Primary.storyName = "xxx";
   `
