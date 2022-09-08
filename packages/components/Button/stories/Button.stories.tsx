@@ -8,6 +8,7 @@ export default {
   title: "components/Button",
   Component: Button,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
+  // https://storybook.js.org/docs/react/essentials/controls#choosing-the-control-type
   argTypes: {
     size: {
       options: ["small", "middle", "large", "stretch"],

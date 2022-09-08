@@ -12,12 +12,16 @@ export default {
     width: {
       type: "string",
     },
+    auto: {
+      type: "boolean",
+      control: "boolean",
+    },
   },
 } as ComponentMeta<typeof Overlay>;
 
 export const Template: ComponentStory<typeof Overlay> = (args) => {
   // @ts-ignore
-  const { width } = args;
+  const { width, auto } = args;
 
   const [visible, setVisible] = useState(false);
   const anchor = useRef<HTMLButtonElement>(null);
@@ -37,8 +41,8 @@ export const Template: ComponentStory<typeof Overlay> = (args) => {
         click
       </Button>
       {visible && (
-        <Overlay anchor={anchor} host={document.body}>
-          aaa
+        <Overlay auto={auto} anchor={anchor} host={document.body}>
+          aaaasd奥术大师多阿萨德阿萨德阿萨德按时啊实打实大四大四德按时啊实打实大四大德按时啊实打实大四大德按时啊实打实大四大德按时啊实打实大四大
         </Overlay>
       )}
     </>

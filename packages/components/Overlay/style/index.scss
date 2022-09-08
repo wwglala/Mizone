@@ -2,10 +2,15 @@
 
 .#{$prefix} {
   &-overlay {
+    padding: 5px;
     min-width: max-content;
     min-height: max-content;
     box-shadow: $box-overlay-shadow;
     background-color: $normalBg;
     border-radius: $box-border-raduis;
+    box-sizing: border-box;
+    &--auto {
+      min-width: auto;
+    }
   }
 }

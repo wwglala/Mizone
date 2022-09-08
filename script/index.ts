@@ -89,16 +89,21 @@ import { ${name} } from "../index";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import "../style/index.scss";
 
+// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: "components/${name}",
   Component: ${name},
+  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
+  // https://storybook.js.org/docs/react/essentials/controls#choosing-the-control-type
   argTypes:{
     
   }
 } as ComponentMeta<typeof ${name}>;
 
+// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 export const Template: ComponentStory<typeof ${name}> = (args) => <${name} {...args} />;
 
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
 Template.args = {
 
 };
