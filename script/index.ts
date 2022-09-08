@@ -113,18 +113,19 @@ Template.args = {
     .writeFile(
       path.join(dist, "index.tsx"),
       `
-import React, { ReactNode } from "react";
-interface ${name}Props {
+import React, { HTMLAttributes, ReactNode, forwardRef } from "react";
+
+interface ${name}Props extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
 }
-export function ${name}(props: ${name}Props) {
-  const { children } = props;
+export const ${name} = forwardRef<HTMLDivElement, ${name}Props>(
+  (props, forwardedRef) => {
+    const { children } = props;
 
-  return (
-    <div>${name}</div>
-  );
-}
-${name}.displayName = "${name}"
+    return <div ref={forwardedRef}>${name}</div>;
+  }
+);
+${name}.displayName = "${name}";
   `
     )
 

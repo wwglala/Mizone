@@ -5,7 +5,7 @@ import React, {
   useState,
 } from "react";
 import { Portal } from "../Portal";
-import { useBem } from "../utils/hooks/useBem";
+import { useBem } from "../utils/hooks";
 import { cx } from "@mizone/utils";
 
 interface OverlayProps extends HtmlHTMLAttributes<HTMLDivElement> {

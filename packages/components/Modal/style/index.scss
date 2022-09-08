@@ -1,0 +1,42 @@
+@use '../../theme/index.scss' as *;
+
+.#{$prefix} {
+  &-mask {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(black, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__wrapper {
+      width: max-content;
+      height: max-content;
+      background: white;
+      padding: $box-padding-middle;
+      border-radius: $box-border-raduis;
+    }
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      justify-items: center;
+      &--close {
+        cursor: pointer;
+      }
+    }
+    &__body {
+      display: flex;
+      justify-content: center;
+      justify-items: center;
+      margin: $box-padding-middle 0;
+    }
+    &__footer {
+      display: flex;
+      justify-content: flex-end;
+      justify-items: center;
+      & > .#{$prefix}-button:nth-child(1) {
+        margin-right: 10px;
+      }
+    }
+  }
+}
