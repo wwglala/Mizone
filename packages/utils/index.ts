@@ -28,6 +28,7 @@ export const cx = (...args: any[]): string => {
         return cx(...Object.keys(exp).filter((key) => !!exp[key]));
       }
     })
+    .filter(Boolean)
     .join(" ");
 };
 

@@ -5,9 +5,8 @@ import React, {
   ReactNode,
 } from "react";
 import { cx } from "@mizone/utils";
-import { useBem } from "../utils/hooks/useBem";
+import { useBem, useSize } from "../utils/hooks";
 import { SizeType } from "../config-provider/sizeContext";
-import { useSize } from "../utils/hooks/useSize";
 
 export type ButtonType = "primary" | "default" | "dashed";
 export interface ButtonProps
