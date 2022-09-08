@@ -5,53 +5,12 @@ pnpm i
 pnpm start
 ```
 
-### vscode settings
+### 开发
 
-```json
-{
-  "eslint.validate": [
-    "javascript",
-    "javascriptvue",
-    "typescript",
-    "typescriptreact",
-    "vue"
-  ],
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll.stylelint": true
-  },
-  "eslint.codeAction.showDocumentation": {
-    "enable": true
-  },
-  "editor.formatOnType": true,
-  "editor.formatOnSave": true,
-  "editor.tabSize": 2,
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "files.eol": "\n",
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[scss]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[less]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
-}
+> 集成宏
+
+```
+npx mizone
 ```
 
 ### 提交
@@ -144,9 +103,8 @@ https://github.com/okonet/lint-staged/issues/1191
 
 ### 代办
 
-1. 集成命令
-2. 单元测试
-3. changelog 自动生成
+1. 单元测试
+2. changelog 自动生成
 
 ### 其他：
 
@@ -156,3 +114,52 @@ https://github.com/okonet/lint-staged/issues/1191
 
 2. https://www.npmjs.com/package/@esbuild-kit/cjs-loader
    > 转换 esm 和 ts 为 commonjs
+
+### vscode settings
+
+```json
+{
+  "eslint.validate": [
+    "javascript",
+    "javascriptvue",
+    "typescript",
+    "typescriptreact",
+    "vue"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  "eslint.codeAction.showDocumentation": {
+    "enable": true
+  },
+  "editor.formatOnType": true,
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "files.eol": "\n",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[less]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
+```
