@@ -41,3 +41,58 @@
     }
   }
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    background: rgba(0, 0, 0, 0);
+  }
+  to {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.6);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+}
+
+@keyframes In {
+  from {
+    transform: translateY(-200px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes Out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-200px);
+  }
+}
+
+.in {
+  animation: fadeIn 1s;
+}
+
+.out {
+  animation: fadeOut 1s;
+}
+
+.top {
+  animation: In 1s;
+}
+
+.bottom {
+  animation: Out 1s;
+}

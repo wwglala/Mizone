@@ -10,7 +10,7 @@ import React, {
 import { Portal } from "../Portal";
 import { useBem, useMergeRefs } from "../utils/hooks";
 import { Button } from "../Button";
-import { Animate } from "../Animate";
+import { Animate, Animate2 } from "../Animate";
 
 export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   visible: boolean;
@@ -43,50 +43,37 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
     ];
 
     return (
-      <Animate
-        visible={visible}
-        duration={300}
-        start={() => {
-          innerMaskRef.current?.animate(maskAnimation[0], maskAnimation[1]);
-          innerWrapperRef.current?.animate(
-            wrapperAnimation[0],
-            wrapperAnimation[1]
-          );
-        }}
-        end={() => {
-          innerMaskRef.current?.animate(
-            [...maskAnimation[0].reverse()],
-            maskAnimation[1]
-          );
-          innerWrapperRef.current?.animate(
-            [...wrapperAnimation[0].reverse()],
-            wrapperAnimation[1]
-          );
-        }}
-      >
-        <Portal ref={mergeRef} host={document.body} className={cx(bem("mask"))}>
-          <div ref={innerWrapperRef} className={cx(bem("mask", "wrapper"))}>
-            {header && (
-              <div className={cx(bem("mask", "header"))}>
-                <div>{title}</div>
-                <div
-                  onClick={onClose}
-                  className={cx(bem("mask", "header", { close: true }))}
-                >
-                  x
+      <Animate2 appear="in" exit="out" timeout={200} visible={visible}>
+        <Portal
+          ref={mergeRef}
+          host={document.body}
+          className={cx(bem("mask"))}
+          style={{ background: "rgba(0,0,0,0.6)" }}
+        >
+          <Animate2 appear="top" exit="bottom" timeout={200} visible={visible}>
+            <div ref={innerWrapperRef} className={cx(bem("mask", "wrapper"))}>
+              {header && (
+                <div className={cx(bem("mask", "header"))}>
+                  <div>{title}</div>
+                  <div
+                    onClick={onClose}
+                    className={cx(bem("mask", "header", { close: true }))}
+                  >
+                    x
+                  </div>
                 </div>
-              </div>
-            )}
-            <div className={cx(bem("mask", "body"))}>{children}</div>
-            {footer && (
-              <div className={cx(bem("mask", "footer"))}>
-                <Button onClick={onOk}>确定</Button>
-                <Button onClick={onClose}>取消</Button>
-              </div>
-            )}
-          </div>
+              )}
+              <div className={cx(bem("mask", "body"))}>{children}</div>
+              {footer && (
+                <div className={cx(bem("mask", "footer"))}>
+                  <Button onClick={onOk}>确定</Button>
+                  <Button onClick={onClose}>取消</Button>
+                </div>
+              )}
+            </div>
+          </Animate2>
         </Portal>
-      </Animate>
+      </Animate2>
     );
   }
 );
