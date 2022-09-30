@@ -29,40 +29,38 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
     const innerWrapperRef = useRef<HTMLDivElement>(null);
     const mergeRef = useMergeRefs(forwardedRef, innerMaskRef);
 
+    const maskAnimation: any = [
+      [{ background: "rgba(0,0,0,0.0)" }, { background: "rgba(0,0,0,0.6)" }],
+      { duration: 300, easing: "ease", fill: "forwards" },
+    ];
+
+    const wrapperAnimation: any = [
+      [
+        { opacity: 0, transform: "translateY(-200px)" },
+        { opacity: 1, transform: "translateY(0)" },
+      ],
+      { duration: 300, easing: "ease", fill: "forwards" },
+    ];
+
     return (
       <Animate
         visible={visible}
         duration={300}
         start={() => {
-          innerMaskRef.current?.animate(
-            [
-              { background: "rgba(0,0,0,0.0)" },
-              { background: "rgba(0,0,0,0.6)" },
-            ],
-            { duration: 300, easing: "ease", fill: "forwards" }
-          );
+          innerMaskRef.current?.animate(maskAnimation[0], maskAnimation[1]);
           innerWrapperRef.current?.animate(
-            [
-              { opacity: 0, transform: "translateY(-200px)" },
-              { opacity: 1, transform: "translateY(0)" },
-            ],
-            { duration: 300, easing: "ease", fill: "forwards" }
+            wrapperAnimation[0],
+            wrapperAnimation[1]
           );
         }}
         end={() => {
           innerMaskRef.current?.animate(
-            [
-              { background: "rgba(0,0,0,0.6)" },
-              { background: "rgba(0,0,0,0.0)" },
-            ],
-            { duration: 300, easing: "ease", fill: "forwards" }
+            [...maskAnimation[0].reverse()],
+            maskAnimation[1]
           );
           innerWrapperRef.current?.animate(
-            [
-              { opacity: 1, transform: "translateY(0)" },
-              { opacity: 0, transform: "translateY(-200px)" },
-            ],
-            { duration: 300, easing: "ease", fill: "forwards" }
+            [...wrapperAnimation[0].reverse()],
+            wrapperAnimation[1]
           );
         }}
       >

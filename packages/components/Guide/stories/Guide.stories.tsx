@@ -6,7 +6,7 @@ import "../style/index.scss";
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: "components/Guide",
-  Component: () => <div></div>,
+  Component: () => <div>1231</div>,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   // https://storybook.js.org/docs/react/essentials/controls#choosing-the-control-type
   argTypes: {},
@@ -14,26 +14,24 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 export const Template: ComponentStory<any> = (args) => {
-  const s = [
-    {
-      selector: ".b1",
-      content: <div style={{ background: "white" }}>123123</div>,
-    },
-    {
-      selector: ".b2",
-      content: <div>123123</div>,
-    },
-    {
-      selector: ".b3",
-      content: <div>123123</div>,
-    },
-  ];
-
   return (
     <div style={{ padding: 20, position: "relative" }}>
       <button
         onClick={() => {
-          new Guide(s).start();
+          new Guide([
+            {
+              selector: ".b1",
+              content: <div>123123</div>,
+            },
+            {
+              selector: ".b2",
+              content: <div>123123</div>,
+            },
+            {
+              selector: ".b3",
+              content: <div>123123</div>,
+            },
+          ]).start();
         }}
       >
         start
