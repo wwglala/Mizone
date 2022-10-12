@@ -27,7 +27,6 @@ function Input(props: any) {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 export const Template: ComponentStory<typeof Field> = (args) => {
   const form = useMemo(() => new FormController(), []);
-
   return (
     <div>
       <FormContext.Provider value={form}>

@@ -5,8 +5,8 @@ interface FormControllerProps {
 export class FormController {
   private state: Record<string, any>;
   private listener: Record<string, Set<Function>>;
-  constructor(props?: FormControllerProps) {
-    const { initValues } = (props = {} as FormControllerProps);
+  constructor(props: FormControllerProps = {}) {
+    const { initValues } = props;
     this.state = {
       ...initValues,
     };
