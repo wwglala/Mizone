@@ -23,6 +23,7 @@ async function buildPackages() {
     }
   );
 
+  const configArr = Object.entries(outConfig);
   try {
     const rollupTask = await rollup({
       ...config,
@@ -31,10 +32,10 @@ async function buildPackages() {
     });
 
     await Promise.all(
-      Object.values(outConfig).map((sett) => {
+      configArr.map(([name, sett]) => {
+        if (name === "umd") return Promise.resolve();
         return rollupTask.write({
-          format: sett.format as any,
-          dir: sett.output.path,
+          ...sett,
           exports: sett.format === "cjs" ? "named" : undefined,
           preserveModules: true,
           preserveModulesRoot: UI_PATH,
@@ -49,6 +50,18 @@ async function buildPackages() {
     );
   } catch (e) {
     console.log(e.message);
+  }
+
+  const umdConfig = configArr.find(([name]) => name === "umd");
+  if (umdConfig) {
+    const rollupTask = await rollup({
+      ...config,
+      input: path.resolve(__dirname, "../packages/mizone/index.ts"),
+    });
+    await rollupTask.write({
+      ...umdConfig[1],
+      sourcemap: true,
+    });
   }
 
   await copyFile(
