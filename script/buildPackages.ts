@@ -22,17 +22,15 @@ async function buildPackages() {
       onlyFiles: true,
     }
   );
-
-  const configArr = Object.entries(outConfig);
+  const configEntries = Object.entries(outConfig);
   try {
     const rollupTask = await rollup({
       ...config,
       input,
       // treeshake: false,
     });
-
     await Promise.all(
-      configArr.map(([name, sett]) => {
+      configEntries.map(([name, sett]) => {
         if (name === "umd") return Promise.resolve();
         return rollupTask.write({
           ...sett,
@@ -52,13 +50,13 @@ async function buildPackages() {
     console.log(e.message);
   }
 
-  const umdConfig = configArr.find(([name]) => name === "umd");
+  const umdConfig = configEntries.find(([name]) => name === "umd");
   if (umdConfig) {
     const rollupTask = await rollup({
       ...config,
       input: path.resolve(__dirname, "../packages/mizone/index.ts"),
     });
-    await rollupTask.write({
+    rollupTask.write({
       ...umdConfig[1],
       sourcemap: true,
     });

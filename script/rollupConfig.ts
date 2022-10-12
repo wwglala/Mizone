@@ -50,5 +50,6 @@ export const outConfig = {
     format: "umd",
     dir: path.join(OUT_PATH, UI_NAME, "dist"),
     name: "mizone",
+    inlineDynamicImports: true,
   },
 } as const;

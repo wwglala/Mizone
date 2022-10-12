@@ -1,4 +1,12 @@
-import React, { HTMLAttributes, ReactNode, useRef, useEffect } from "react";
+import { cx } from "@mizone/utils";
+import React, {
+  HTMLAttributes,
+  ReactNode,
+  useRef,
+  useEffect,
+  useState,
+  ReactElement,
+} from "react";
 import { useSyncState } from "../utils/hooks";
 
 interface AnimateProps extends HTMLAttributes<HTMLDivElement> {
@@ -33,3 +41,44 @@ export const Animate = (props: AnimateProps) => {
   return JSX as unknown as JSX.Element;
 };
 Animate.displayName = "Animate";
+
+interface Animate2Props {
+  appear: string;
+  exit: string;
+  visible: boolean;
+  timeout: number;
+  children?: ReactElement;
+}
+
+function useDelayUnmount(visible, timeout) {
+  const [desctoryed, setDesctory] = useState(!visible);
+
+  useEffect(() => {
+    if (!visible) {
+      setTimeout(() => {
+        setDesctory(true);
+      }, timeout);
+    }
+  }, [visible]);
+
+  return desctoryed;
+}
+
+export const Animate2 = (props: Animate2Props) => {
+  const { appear, exit, visible, timeout, children } = props;
+  const desctoryed = useDelayUnmount(visible, timeout);
+
+  return (
+    <>
+      {desctoryed
+        ? null
+        : React.cloneElement(children!, {
+            className: cx(
+              children?.props.className,
+              { [appear]: visible },
+              { [exit]: !visible }
+            ),
+          })}
+    </>
+  );
+};
