@@ -39,19 +39,17 @@ export const config = {
 
 export const outConfig = {
   es: {
-    module: "ESNext",
     format: "esm",
-    output: {
-      name: "es",
-      path: path.join(OUT_PATH, UI_NAME, "es"),
-    },
+    dir: path.join(OUT_PATH, UI_NAME, "es"),
   },
   cjs: {
-    module: "CommonJS",
     format: "cjs",
-    output: {
-      name: "lib",
-      path: path.join(OUT_PATH, UI_NAME, "lib"),
-    },
+    dir: path.join(OUT_PATH, UI_NAME, "lib"),
   },
-};
+  umd: {
+    format: "umd",
+    name: "mizone",
+    dir: path.join(OUT_PATH, UI_NAME, "main"),
+    inlineDynamicImports: true,
+  },
+} as const;
