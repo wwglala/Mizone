@@ -16,6 +16,9 @@ $box-active-color: #33333380;
 $box-focus-border: 0 0 1px 1px rgba(0, 0, 0, 0.07), 0 0 0 2px $primary;
 $box-overlay-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 0 4px rgba(0, 0, 0, 0.2),
   0 4px 8px rgba(0, 0, 0, 0.2);
+$table-cell-padding-stretch: 8px 16px;
+$table-cell-padding-middle: 6px 14px;
+$table-cell-padding-small: 4px 12px;
 
 :root {
   --prefix: $prefix;

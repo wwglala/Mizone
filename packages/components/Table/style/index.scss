@@ -8,7 +8,29 @@
     border-radius: 8px;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
     &__cell {
+      display: flex;
+      align-items: center;
+      padding: $table-cell-padding-stretch;
       box-shadow: 0 0 0 1px #f5f5f5;
+    }
+    &__header,
+    &__row {
+      display: contents;
+      &:hover {
+        .#{$prefix}-table__cell {
+          background-color: #f0f0f0;
+        }
+      }
+    }
+    &--small {
+      .#{$prefix}-table__cell {
+        padding: $table-cell-padding-small;
+      }
+    }
+    &--middle {
+      .#{$prefix}-table__cell {
+        padding: $table-cell-padding-middle;
+      }
     }
   }
 }

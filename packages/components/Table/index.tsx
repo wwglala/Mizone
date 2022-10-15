@@ -1,53 +1,56 @@
+import React, {
+  HTMLAttributes,
+  ReactNode,
+  forwardRef,
+  CSSProperties,
+  useMemo,
+} from "react";
 import { cx } from "@mizone/utils";
-import React, { HTMLAttributes, ReactNode, forwardRef } from "react";
-import { useBem } from "../utils/hooks";
+import { SizeType } from "../config-provider/sizeContext";
+import { useBem, useSize } from "../utils/hooks";
+import TableBody from "./TableBody";
+import TableHeader from "./TableHeader";
+import { deepCopy } from "../utils";
+import useMarkGridLayoutInfo from "./useMarkGridLayoutInfo";
 
-interface TableColumn {
+export interface TableColumn {
   title: ReactNode;
-  dataIndex: string;
+  dataIndex?: string;
   children?: TableColumn[];
+  cell?: (value: any, index: number, record: any) => ReactNode;
 }
 
-interface TableProps extends HTMLAttributes<HTMLDivElement> {
+export interface TableProps extends HTMLAttributes<HTMLDivElement> {
   columns: TableColumn[];
   dataSource: any[];
   children?: ReactNode;
+  className?: string;
+  style?: CSSProperties;
+  size?: SizeType;
 }
-export const Table = forwardRef<HTMLDivElement, TableProps>(
+export const GridTable = forwardRef<HTMLDivElement, TableProps>(
   (props, forwardedRef) => {
-    const { columns, dataSource } = props;
+    const { columns, dataSource, className, style, size: outSize } = props;
     const bem = useBem();
+    const size = useSize(outSize);
+    const { newColumns, length, maxDeep } = useMarkGridLayoutInfo(columns);
 
     return (
       <div
         ref={forwardedRef}
-        className={cx(bem("table"))}
+        className={cx(bem("table"), bem("table", { [size]: size }), className)}
         style={{
-          display: "grid",
           position: "relative",
-          gridTemplateColumns: `repeat(${columns.length}, auto)`,
           alignContent: "start",
+          display: "grid",
+          gridTemplateColumns: `repeat(${length}, auto)`,
+          ...style,
         }}
       >
-        {columns.map(({ title }, index) => (
-          <div
-            key={index}
-            className={cx(bem("table", "cell", { header: true }))}
-          >
-            {title}
-          </div>
-        ))}
-        {dataSource.map((rowData, rowIndex) =>
-          // <div key={rowIndex} className={cx(bem("table", "row"))}>
-          columns.map(({ dataIndex }, colIndex) => (
-            <div key={colIndex} className={cx(bem("table", "cell"))}>
-              {rowData[dataIndex] ?? "-"}
-            </div>
-          ))
-          // </div>
-        )}
+        <TableHeader columns={newColumns} maxDeep={maxDeep} />
+        <TableBody dataSource={dataSource} columns={newColumns} />
       </div>
     );
   }
 );
-Table.displayName = "Table";
+GridTable.displayName = "Table";
