@@ -39,9 +39,11 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 export const Template: ComponentStory<typeof Modal> = (args) => {
   const [visible, setVisible] = useState(args.visible);
+
   useEffect(() => {
     setVisible(args.visible);
   }, [args.visible]);
+
   return (
     <Modal
       {...args}

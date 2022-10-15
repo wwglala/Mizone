@@ -22,8 +22,8 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
     return (
       <Animate
         visible={visible}
-        hideClass={bem("mask", { close: !visible })}
-        showClass={bem("mask", { show: visible })}
+        appear={bem("mask", { show: true })}
+        exit={bem("mask", { close: true })}
         duration={300}
       >
         <Portal
@@ -34,8 +34,8 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
           <Animate
             visible={visible}
             duration={300}
-            showClass={bem("mask", "wrapper", { show: visible })}
-            hideClass={bem("mask", "wrapper", { close: !visible })}
+            appear={bem("mask", "wrapper", { show: visible })}
+            exit={bem("mask", "wrapper", { close: !visible })}
           >
             <div className={cx(bem("mask", "wrapper"))}>
               {header && (

@@ -21,6 +21,8 @@ function useDelayUnmount(visible, duration) {
       setTimeout(() => {
         setDesctory(true);
       }, duration);
+    } else {
+      setDesctory(false);
     }
   }, [visible]);
 
