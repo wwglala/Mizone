@@ -1,35 +1,38 @@
-import React, { HTMLAttributes, ReactNode, useRef, useEffect } from "react";
-import { useSyncState } from "../utils/hooks";
-
+import { cx } from "@mizone/utils";
+import React, {
+  HTMLAttributes,
+  useEffect,
+  useState,
+  ReactElement,
+} from "react";
 interface AnimateProps extends HTMLAttributes<HTMLDivElement> {
   duration: number;
   visible: boolean;
-  start: any;
-  end: any;
-  children?: ReactNode;
+  showClass: string;
+  hideClass: string;
+  children?: ReactElement;
 }
 export const Animate = (props: AnimateProps) => {
-  const { visible, duration, start, end, children } = props;
-  const COUNT = React.Children.count(children);
-  if (COUNT !== 1) {
-    throw new Error("Animate Component only need one child!");
-  }
-  const cacheChildren = useRef(children);
-  const [JSX, setJSX] = useSyncState(visible ? cacheChildren.current : null);
+  const { visible, duration, children, showClass, hideClass } = props;
+  const [show, setShow] = useState(visible);
 
   useEffect(() => {
     if (!visible) {
-      end();
       setTimeout(() => {
-        setJSX(null);
+        setShow(false);
       }, duration);
     } else {
-      setJSX(cacheChildren.current, () => {
-        start();
-      });
+      setShow(true);
     }
   }, [visible]);
 
-  return JSX as unknown as JSX.Element;
+  return show
+    ? React.cloneElement(children!, {
+        className: cx(
+          children?.props.className,
+          visible ? showClass : hideClass
+        ),
+      })
+    : null;
 };
 Animate.displayName = "Animate";
