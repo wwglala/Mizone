@@ -29,6 +29,7 @@ Template.args = {
     {
       title: "name",
       dataIndex: "name",
+      fixed: true,
     },
     {
       title: "main",
@@ -108,4 +109,46 @@ Template.args = {
       address: "河南省夏邑县寺西村",
     },
   ].map((item) => ({ ...item, a: 1, b: 3 })),
+};
+
+export const LeftLock: ComponentStory<typeof GridTable> = (args) => (
+  <div style={{ width: 400 }}>
+    <GridTable {...args} />
+  </div>
+);
+
+LeftLock.args = {
+  columns: [
+    {
+      title: "left lock",
+      dataIndex: "a",
+      fixed: true,
+      width: 100,
+    },
+    {
+      title: "namexxxxx",
+      dataIndex: "a",
+    },
+    {
+      title: "namexxxxx",
+      dataIndex: "a",
+    },
+    {
+      title: "namexxxxx",
+      dataIndex: "a",
+    },
+    {
+      title: "namexxxxx",
+      dataIndex: "a",
+    },
+    {
+      title: "namexxxxx",
+      dataIndex: "a",
+    },
+    {
+      title: "namexxxxx",
+      dataIndex: "a",
+    },
+  ],
+  dataSource: [{ a: 111111 }, { a: 111111 }, { a: 111111 }, { a: 111111 }],
 };

@@ -1,5 +1,5 @@
 import { cx } from "@mizone/utils";
-import React from "react";
+import React, { CSSProperties } from "react";
 import { TableColumn } from ".";
 import { useBem } from "../utils";
 
@@ -15,7 +15,7 @@ export default function TableBody(props: TableBodyProps) {
     const { columns, rowData } = props;
     return (
       <>
-        {columns.map(({ dataIndex, cell, children }, colIndex) => {
+        {columns.map(({ dataIndex, cell, children, fixed }, colIndex) => {
           let value = dataIndex ? rowData[dataIndex] : undefined;
           if (cell) {
             value = cell(value, colIndex, rowData);
@@ -26,7 +26,8 @@ export default function TableBody(props: TableBodyProps) {
                 key={colIndex}
                 className={cx(
                   bem("table", "cell"),
-                  bem("table", "cell", { row: true })
+                  bem("table", "cell", { row: true }),
+                  bem("table", "cell", { fixed })
                 )}
               >
                 {value ?? "-"}

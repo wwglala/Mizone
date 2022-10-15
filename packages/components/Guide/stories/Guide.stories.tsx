@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Guide } from "../index";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import "../style/index.scss";
@@ -14,24 +14,32 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 export const Template: ComponentStory<any> = (args) => {
+  const g = useMemo(
+    () =>
+      new Guide([
+        {
+          selector: ".b1",
+          content: <div>123123</div>,
+        },
+        {
+          selector: ".b2",
+          content: <div>123123</div>,
+        },
+        {
+          selector: ".b3",
+          content: <div>123123</div>,
+        },
+      ]),
+    []
+  );
+
+  useEffect(() => () => g.close(), []);
+
   return (
     <div style={{ padding: 20, position: "relative" }}>
       <button
         onClick={() => {
-          new Guide([
-            {
-              selector: ".b1",
-              content: <div>123123</div>,
-            },
-            {
-              selector: ".b2",
-              content: <div>123123</div>,
-            },
-            {
-              selector: ".b3",
-              content: <div>123123</div>,
-            },
-          ]).start();
+          g.start();
         }}
       >
         start

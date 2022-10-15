@@ -15,8 +15,10 @@ import useMarkGridLayoutInfo from "./useMarkGridLayoutInfo";
 
 export interface TableColumn {
   title: ReactNode;
+  fixed?: boolean;
   dataIndex?: string;
   children?: TableColumn[];
+  width?: number;
   cell?: (value: any, index: number, record: any) => ReactNode;
 }
 
