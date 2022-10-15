@@ -63,6 +63,10 @@ export class Guide {
     );
   }
 
+  close() {
+    ReactDOM.unmountComponentAtNode(this.maskDOM);
+  }
+
   next() {
     this.startIndex += 1;
     if (this.startIndex >= this.steps.length) this.startIndex = 0;

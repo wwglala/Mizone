@@ -10,12 +10,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    &--show {
+      animation: fadeIn 0.3s;
+    }
+    &--close {
+      animation: fadeOut 0.3s;
+    }
     &__wrapper {
       width: max-content;
       height: max-content;
       background: white;
       padding: $box-padding-middle;
       border-radius: $box-border-raduis;
+      &--show {
+        animation: fadeTop 0.3s forwards;
+      }
+      &--close {
+        animation: hideBot 0.3s forwards;
+      }
     }
     &__header {
       display: flex;
@@ -48,8 +60,8 @@
     background: rgba(0, 0, 0, 0);
   }
   to {
-    opacity: 1;
     background: rgba(0, 0, 0, 0.6);
+    opacity: 1;
   }
 }
 
@@ -81,18 +93,24 @@
   }
 }
 
-.in {
-  animation: fadeIn 1s;
+@keyframes fadeTop {
+  from {
+    opacity: 0;
+    transform: translateY(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.out {
-  animation: fadeOut 1s;
-}
-
-.top {
-  animation: In 1s;
-}
-
-.bottom {
-  animation: Out 1s;
+@keyframes hideBot {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-200px);
+  }
 }
