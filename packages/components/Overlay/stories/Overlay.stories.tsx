@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, MouseEvent } from "react";
 import { Overlay } from "../index";
 import { Button } from "../../Button";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import "../style/index.scss";
 import "../../Portal/style/index.scss";
+import { useEffect } from "react";
 
 export default {
   title: "components/Overlay",
@@ -26,9 +27,15 @@ export const Template: ComponentStory<typeof Overlay> = (args) => {
   const [visible, setVisible] = useState(false);
   const anchor = useRef<HTMLButtonElement>(null);
 
-  const onClick = () => {
+  const onClick = (e: MouseEvent) => {
+    e.stopPropagation();
     setVisible(!visible);
   };
+  useEffect(() => {
+    window.addEventListener("click", (e) => {
+      setVisible(false);
+    });
+  }, []);
 
   return (
     <>
