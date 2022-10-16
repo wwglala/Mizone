@@ -5,17 +5,19 @@ import React, {
   useState,
   ComponentProps,
   ComponentType,
+  ReactNode,
 } from "react";
 import { FormContext } from "./FormContext";
 
 interface FieldProps<T extends ComponentType<any>> {
   path: string;
   component: React.FC<ComponentProps<T>>;
+  label?: ReactNode;
 }
 
 export const Field = forwardRef<HTMLDivElement, FieldProps<any>>(
   (props, forwardedRef) => {
-    const { path, component: Component } = props;
+    const { path, component: Component, label } = props;
     const form = useContext(FormContext);
     const [value, setValue] = useState(undefined);
     useEffect(() => {
@@ -28,7 +30,12 @@ export const Field = forwardRef<HTMLDivElement, FieldProps<any>>(
       form.setValue(path, v);
     };
 
-    return <Component ref={forwardedRef} {...{ value, onChange }}></Component>;
+    return (
+      <div>
+        <div>{label}:</div>
+        <Component ref={forwardedRef} {...{ value, onChange }}></Component>
+      </div>
+    );
   }
 );
 

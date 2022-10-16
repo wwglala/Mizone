@@ -34,6 +34,7 @@ export function Overlay(props: OverlayProps) {
       <div
         className={cx(bem("overlay"), { [bem("overlay", { auto })]: auto })}
         style={{ width }}
+        onClick={(e) => e.stopPropagation()}
         {...rest}
       />
     </Portal>

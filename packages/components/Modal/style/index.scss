@@ -23,10 +23,10 @@
       padding: $box-padding-middle;
       border-radius: $box-border-raduis;
       &--show {
-        animation: fadeTop 0.3s forwards;
+        animation: T200 0.3s forwards;
       }
       &--close {
-        animation: hideBot 0.3s forwards;
+        animation: T-200 0.3s forwards;
       }
     }
     &__header {
@@ -51,66 +51,5 @@
         margin-right: 10px;
       }
     }
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    background: rgba(0, 0, 0, 0);
-  }
-  to {
-    background: rgba(0, 0, 0, 0.6);
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.6);
-  }
-  to {
-    opacity: 0;
-    background: rgba(0, 0, 0, 0);
-  }
-}
-
-@keyframes In {
-  from {
-    transform: translateY(-200px);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-@keyframes Out {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-200px);
-  }
-}
-
-@keyframes fadeTop {
-  from {
-    opacity: 0;
-    transform: translateY(-200px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes hideBot {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-200px);
   }
 }

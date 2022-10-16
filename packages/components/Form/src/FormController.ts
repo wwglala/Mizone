@@ -5,6 +5,7 @@ interface FormControllerProps {
 export class FormController {
   private state: Record<string, any>;
   private listener: Record<string, Set<Function>>;
+  private onChangeListener: Set<Function> = new Set();
   constructor(props: FormControllerProps = {}) {
     const { initValues } = props;
     this.state = {
@@ -25,6 +26,7 @@ export class FormController {
   setValue(path: string, value: any) {
     this.state[path] = value;
     this.notify(path, value);
+    this.onChangeListener.forEach((fn) => fn(path, value, this.state));
   }
 
   setValues(obj: Record<string, any>) {
@@ -45,5 +47,8 @@ export class FormController {
       this.listener[path] = set;
     }
     set.add(fn);
+  }
+  onChange(effect: Function) {
+    this.onChangeListener.add(effect);
   }
 }

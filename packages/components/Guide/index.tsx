@@ -186,7 +186,12 @@ function Content(props: ContentPropsType) {
   }, []);
 
   return (
-    <div className={cx(bem("guide", "content"))}>
+    <div
+      className={cx(
+        bem("guide", "content"),
+        bem("guide", "content", { show: true })
+      )}
+    >
       <div
         ref={(dom) => {
           dom?.append(cloneAnchor);

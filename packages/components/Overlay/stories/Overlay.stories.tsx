@@ -13,6 +13,9 @@ export default {
     width: {
       type: "string",
     },
+    overlayWidth: {
+      type: "number",
+    },
     auto: {
       type: "boolean",
       control: "boolean",
@@ -22,7 +25,8 @@ export default {
 
 export const Template: ComponentStory<typeof Overlay> = (args) => {
   // @ts-ignore
-  const { width, auto } = args;
+  const { width, auto, overlayWidth } = args;
+  console.log(overlayWidth);
 
   const [visible, setVisible] = useState(false);
   const anchor = useRef<HTMLButtonElement>(null);
@@ -49,7 +53,9 @@ export const Template: ComponentStory<typeof Overlay> = (args) => {
       </Button>
       {visible && (
         <Overlay auto={auto} anchor={anchor} host={document.body}>
-          aaaasd奥术大师多阿萨德阿萨德阿萨德按时啊实打实大四大四德按时啊实打实大四大德按时啊实打实大四大德按时啊实打实大四大德按时啊实打实大四大
+          <div style={{ width: overlayWidth }}>
+            aaaasd奥术大师多阿萨德阿萨德阿萨德按时啊实打实大四大四德按时啊实打实大四大德按时啊实打实大四大德按时啊实打实大四大德按时啊实打实大四大
+          </div>
         </Overlay>
       )}
     </>
@@ -59,4 +65,5 @@ export const Template: ComponentStory<typeof Overlay> = (args) => {
 Template.args = {
   // @ts-ignore
   width: "100",
+  overlayWidth: 100,
 };
