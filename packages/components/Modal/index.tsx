@@ -24,7 +24,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
         visible={visible}
         appear={bem("mask", { show: true })}
         exit={bem("mask", { close: true })}
-        duration={300}
+        duration={400}
       >
         <Portal
           ref={forwardedRef}
@@ -33,7 +33,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
         >
           <Animate
             visible={visible}
-            duration={300}
+            duration={400}
             appear={bem("mask", "wrapper", { show: visible })}
             exit={bem("mask", "wrapper", { close: !visible })}
           >

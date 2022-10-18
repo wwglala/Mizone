@@ -11,10 +11,10 @@
     justify-content: center;
     align-items: center;
     &--show {
-      animation: fadeIn 0.3s;
+      animation: fadeIn 0.3s forwards;
     }
     &--close {
-      animation: fadeOut 0.3s;
+      animation: fadeOut 0.3s forwards;
     }
     &__wrapper {
       width: max-content;
