@@ -1,1 +1,145 @@
 @use '../../theme/index.scss' as *;
+.#{$prefix} {
+  &-tooltip {
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    width: max-content;
+    &:hover {
+      &::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border: 6px solid transparent;
+        opacity: 0;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+      }
+      &::after {
+        content: attr(content);
+        height: 24px;
+        display: flex;
+        align-items: center;
+        width: max-content;
+        position: absolute;
+        color: #fff;
+        background: #333;
+        border-radius: 2px;
+        font-weight: normal;
+        box-shadow: 0px 0px 3px #333;
+        padding: 2px 12px;
+        font-size: 12px;
+        opacity: 0;
+        animation-duration: 0.4s;
+        animation-fill-mode: forwards;
+      }
+    }
+    &--left {
+      &:hover {
+        &::before {
+          left: 0;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          border-left-color: #333;
+          animation-name: tooltip-ani-left;
+        }
+        &::after {
+          left: -11px;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          animation-name: tooltip-ani-left;
+        }
+      }
+    }
+
+    &--top {
+      &:hover {
+        &::before {
+          top: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
+          border-top-color: #333;
+          animation-name: tooltip-ani-top;
+        }
+        &::after {
+          top: -11px;
+          left: 0;
+          right: 0;
+          margin: auto;
+          animation-name: tooltip-ani-top;
+        }
+      }
+    }
+    &--right {
+      &:hover {
+        &::before {
+          right: 0;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          border-right-color: #333;
+          animation-name: tooltip-ani-right;
+        }
+        &::after {
+          right: -12px;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          animation-name: tooltip-ani-right;
+        }
+      }
+    }
+    &--bottom {
+      &:hover {
+        &::before {
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
+          border-bottom-color: #333;
+          animation-name: tooltip-ani-bottom;
+        }
+        &::after {
+          bottom: 0;
+          left: 0;
+          right: 0;
+          bottom: -11px;
+          margin: auto;
+          animation-name: tooltip-ani-bottom;
+        }
+      }
+    }
+  }
+}
+
+@keyframes tooltip-ani-left {
+  to {
+    transform: translate(-100%, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes tooltip-ani-top {
+  to {
+    transform: translate(0, -100%);
+    opacity: 1;
+  }
+}
+
+@keyframes tooltip-ani-right {
+  to {
+    transform: translate(100%, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes tooltip-ani-bottom {
+  to {
+    transform: translate(0, 100%);
+    opacity: 1;
+  }
+}
