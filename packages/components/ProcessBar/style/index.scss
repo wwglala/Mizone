@@ -1,0 +1,44 @@
+@use '../../theme/index.scss' as *;
+.#{$prefix} {
+  &-process {
+    &--stretch {
+      height: $process-bar-stretch;
+      border-radius: $process-bar-stretch / 2;
+    }
+    &--middle {
+      height: $process-bar-middle;
+      border-radius: $process-bar-middle / 2;
+    }
+    &--small {
+      height: $process-bar-small;
+      border-radius: $process-bar-small / 2;
+    }
+    &__wrapper {
+      height: inherit;
+      background-color: $nouse-bg;
+      border-radius: inherit;
+    }
+    &__bar {
+      height: inherit;
+      background: linear-gradient(
+        45deg,
+        #4bbffe 25%,
+        #0089da 0,
+        #0089da 50%,
+        #4bbffe 0,
+        #4bbffe 75%,
+        #0089da 0,
+        #0089da 100%
+      );
+      background-size: 16px 16px;
+      animation: rolling 20s linear infinite;
+      border-radius: inherit;
+    }
+  }
+}
+
+@keyframes rolling {
+  to {
+    background-position: 200% 0;
+  }
+}
