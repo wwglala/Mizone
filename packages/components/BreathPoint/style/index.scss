@@ -1,0 +1,48 @@
+@use '../../theme/index.scss' as *;
+.#{$prefix} {
+  &-breath-point {
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--mcolor);
+    box-sizing: border-box;
+    &--stretch {
+      width: 16px;
+      height: 16px;
+    }
+    &--middle {
+      width: 14px;
+      height: 14px;
+    }
+    &--small {
+      width: 12px;
+      height: 12px;
+    }
+    &::before {
+      content: "";
+      border-radius: inherit;
+      box-sizing: border-box;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      width: 100%;
+      height: 100%;
+      border: 1px solid var(--mcolor);
+      animation: scale 1s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(2);
+  }
+}
