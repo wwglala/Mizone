@@ -19,18 +19,16 @@ export const Template: ComponentStory<typeof Tooltip> = (args) => {
     margin: "20px",
     background: "skyblue",
     borderRadius: "5px",
-    margin: "10px",
+    // @ts-ignore
+    margin: 10,
   };
 
   return (
     <div
       style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        margin: "auto",
+        display: "flex",
+        justifyContent: "center",
+        padding: "50px 0px",
       }}
     >
       <Tooltip {...args} position="top" content="top">

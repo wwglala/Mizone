@@ -2,6 +2,7 @@
 
 .#{$prefix} {
   &-overlay {
+    position: absolute;
     padding: 5px;
     min-width: max-content;
     min-height: max-content;

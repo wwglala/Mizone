@@ -16,9 +16,8 @@ interface OverlayProps extends HtmlHTMLAttributes<HTMLDivElement> {
 export function Overlay(props: OverlayProps) {
   const { auto, host, anchor, ...rest } = props;
   const bem = useBem();
-  const anchorWidth = anchor.current?.getBoundingClientRect().width ?? 0;
-
-  const [width, setWidth] = useState(anchorWidth);
+  const anchorRect = anchor.current!.getBoundingClientRect()!;
+  const [width, setWidth] = useState(anchorRect.width ?? 0);
 
   useEffect(() => {
     const observer = new ResizeObserver((entry) => {
@@ -30,10 +29,10 @@ export function Overlay(props: OverlayProps) {
   }, []);
 
   return (
-    <Portal host={host} style={{ position: "fixed" }}>
+    <Portal host={host}>
       <div
         className={cx(bem("overlay"), { [bem("overlay", { auto })]: auto })}
-        style={{ width }}
+        style={{ width, left: anchorRect.left, top: anchorRect.bottom }}
         onClick={(e) => e.stopPropagation()}
         {...rest}
       />

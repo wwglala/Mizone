@@ -42,7 +42,7 @@ export const Template: ComponentStory<typeof Overlay> = (args) => {
   }, []);
 
   return (
-    <>
+    <div>
       <Button
         style={{ width: `${width}px` }}
         ref={anchor}
@@ -58,7 +58,7 @@ export const Template: ComponentStory<typeof Overlay> = (args) => {
           </div>
         </Overlay>
       )}
-    </>
+    </div>
   );
 };
 
