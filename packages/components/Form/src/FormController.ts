@@ -1,3 +1,5 @@
+import { Validator } from "@mizone/utils";
+
 interface FormControllerProps {
   initValues?: Record<string, any>;
 }
@@ -6,6 +8,7 @@ export class FormController {
   private state: Record<string, any>;
   private listener: Record<string, Set<Function>>;
   private onChangeListener: Set<Function> = new Set();
+  private strategy: Validator;
   constructor(props: FormControllerProps = {}) {
     const { initValues } = props;
     this.state = {
@@ -13,6 +16,7 @@ export class FormController {
     };
 
     this.listener = {};
+    this.strategy = new Validator();
   }
 
   getValue(path: string) {
@@ -30,10 +34,9 @@ export class FormController {
   }
 
   setValues(obj: Record<string, any>) {
-    this.state = {
-      ...this.state,
-      ...obj,
-    };
+    Object.entries(obj).forEach(([key, value]) => {
+      this.setValue(key, value);
+    });
   }
 
   notify(path: string, value: any) {
@@ -50,5 +53,13 @@ export class FormController {
   }
   onChange(effect: Function) {
     this.onChangeListener.add(effect);
+  }
+
+  addRule(name: string, rule: Function, message: string) {
+    this.strategy.add(name, rule, message);
+  }
+
+  validator(names?: string[]) {
+    return this.strategy.valida(this.state, names);
   }
 }

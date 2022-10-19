@@ -8,4 +8,9 @@
       gap: 10px;
     }
   }
+  &-field {
+    &--error {
+      color: red;
+    }
+  }
 }

@@ -28,6 +28,7 @@ function Input(props: any) {
 export const Template: ComponentStory<typeof Field> = (args) => {
   const form = useMemo(() => new FormController(), []);
   const [state, setState] = useState({});
+  const [errors, setErrors] = useState<any>(null);
   useEffect(() => {
     form.onChange((name, value, source) => {
       setState({ ...source });
@@ -38,15 +39,38 @@ export const Template: ComponentStory<typeof Field> = (args) => {
     <div>
       <FormContext.Provider value={form}>
         <FormLayout>
-          <Field label="name" path="name" component={Input}></Field>
-          <Field label="age" path="age" component={Input}></Field>
+          <Field required label="name" path="name" component={Input}></Field>
+          <Field
+            label="age"
+            validtor={(age) => age > 10}
+            path="age"
+            component={Input}
+          ></Field>
           <Field label="sex" path="sex" component={Input}></Field>
           <Field label="adress" path="adress" component={Input}></Field>
         </FormLayout>
         <div style={{ marginTop: 20 }}>
-          <button onClick={() => form.setValue("name", "wwg")}>set</button>
+          <button
+            onClick={() => {
+              form.setValues({ name: "wwg", age: 8 });
+            }}
+          >
+            set
+          </button>
         </div>
+        <div>values:</div>
         <pre>{JSON.stringify(state, null, 2)}</pre>
+
+        <button
+          onClick={() => {
+            const error = form.validator();
+            setErrors(error);
+          }}
+        >
+          validator
+        </button>
+        <div>errors:</div>
+        <pre>{errors?.map((item) => JSON.stringify(item, null, 2))}</pre>
       </FormContext.Provider>
     </div>
   );

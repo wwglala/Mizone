@@ -45,8 +45,18 @@ export const curry = (fn: Fn) => {
 };
 
 export const compose = (...fns: Fn[]) => {
-  return (...args: any[]) => {
-    return fns.reduceRight((params, fn) => fn(...params), args);
+  return <T>(args: T) => {
+    return fns.reduceRight((params, fn) => {
+      return fn(params);
+    }, args);
+  };
+};
+
+export const composeParams = (...fns: Fn[]) => {
+  return <T>(...args: T[]) => {
+    return fns.reduceRight((params, fn) => {
+      return fn(...args);
+    }, args);
   };
 };
 
@@ -54,3 +64,63 @@ export const track = curry((log: string, source: any) => {
   console.log(log, source);
   return source;
 });
+
+export const identity = (id) => id;
+
+type Field = ((source: any) => any) | string;
+
+interface ValidaOptions {
+  cacheRules?: boolean;
+}
+export class Validator {
+  private rules: { field: Field; rule: Function; message: string }[];
+  constructor(private options: ValidaOptions = { cacheRules: true }) {
+    this.rules = [];
+  }
+
+  static minLength = curry((len: number, data: any) => {
+    return data.length <= len;
+  });
+
+  static required = curry((name: any) => {
+    return !!name;
+  });
+
+  add(fn: Field, rule: Function, message: string) {
+    this.rules.push({ field: fn, rule, message });
+  }
+  valida<T>(source: T, fields?: string[]): any[] | null {
+    const errors = [] as any;
+    let i = 0;
+    while (
+      this.options.cacheRules ? i < this.rules.length : this.rules.length
+    ) {
+      const { field, rule, message } = this.options.cacheRules
+        ? this.rules[i]
+        : this.rules.shift()!;
+      i++;
+      if (!fields || (field && fields.includes(field as string))) {
+        let value = null;
+        if (typeof field === "function") {
+          value = field(source);
+        } else {
+          value = source[field];
+        }
+        const isTrue = rule(value);
+        if (!isTrue) errors.push({ field, message });
+      }
+    }
+
+    return errors.length !== 0 ? errors : null;
+  }
+}
+// validator.add((data: any) => data.name, Validator.minLength(6), "xxxx");
+// validator.add("sex", (data) => data, "xxxx");
+
+// const errors = validator.valida({
+//   name: "wwg",
+//   age: 12,
+//   sex: undefined,
+// });
+
+// console.log(errors);
