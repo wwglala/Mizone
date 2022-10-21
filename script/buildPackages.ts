@@ -35,6 +35,12 @@ async function buildPackages() {
         return rollupTask.write({
           ...sett,
           exports: sett.format === "cjs" ? "named" : undefined,
+          /**
+           *  import resolve from "@rollup/plugin-node-resolve";
+           *  import commonjs from "@rollup/plugin-commonjs";
+           *  配合这 preserveModules、preserveModulesRoot 会保持node_modlues的文件路径
+           *  而在组件库打包时，并不需要打包第三方，放到packge.json 即可
+           */
           preserveModules: true,
           preserveModulesRoot: UI_PATH,
           sourcemap: true,

@@ -18,15 +18,15 @@ export const config = {
       preventAssignment: true,
       __DEV__: "true",
     }),
-    resolve({
-      extensions,
-    }),
+    // resolve({
+    //   extensions,
+    // }),
     typescript({
       tsconfigOverride: {
         exclude: [...tsConfig.exclude, "**/*.stories.*"],
       },
     }),
-    commonjs(),
+    // commonjs(),
     json(),
     babel({
       exclude: ["node_modules/**"],
