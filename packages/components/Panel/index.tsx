@@ -5,6 +5,7 @@ import { useBem, useSize } from "../utils";
 import { Overlay } from "../Overlay";
 
 interface PanelProps extends HTMLAttributes<HTMLDivElement> {
+  debug?: boolean;
   placeholder?: string;
   children?: React.ReactNode;
   size?: SizeType;
@@ -12,7 +13,7 @@ interface PanelProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export function Panel(props: PanelProps) {
-  const { size: outSize, OverlayBody, children } = props;
+  const { size: outSize, OverlayBody, children, debug } = props;
   const bem = useBem();
   const size = useSize(outSize);
   const ref = useRef<HTMLLabelElement>(null);
@@ -24,6 +25,12 @@ export function Panel(props: PanelProps) {
 
   function onBlur() {
     setVisible(false);
+  }
+
+  if (debug) {
+    setTimeout(() => {
+      setVisible(true);
+    });
   }
 
   return (

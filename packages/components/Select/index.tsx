@@ -6,6 +6,7 @@ import { Panel } from "../Panel";
 
 interface SelectProps extends HTMLAttributes<HTMLDivElement> {
   dataSource: { label: string; value: any }[];
+  value?: any;
   placeholder?: string;
   size?: SizeType;
   optionRender?: (option: any) => string;
@@ -19,21 +20,27 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
       dataSource,
       optionRender = (option) => option.label,
       onChange,
+      value,
       ...rest
     } = props;
     const bem = useBem();
+    const selectIndex = dataSource.findIndex((item) => item.value === value);
+    const selectLabel =
+      selectIndex !== -1 ? dataSource[selectIndex].label : value;
 
     function OverlayBody(props: { onClose: Function }) {
       const { onClose } = props;
       return (
         <div>
           {dataSource.map((option, i) => {
+            const selected = value !== undefined && value === option.value;
             return (
               <div
+                className={cx(bem("select"), bem("select", { selected }))}
                 key={i}
                 onClick={() => {
-                  onClose();
                   onChange?.(option.value);
+                  onClose();
                 }}
               >
                 {optionRender(option)}
@@ -46,7 +53,14 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
 
     return (
       <Panel {...rest} OverlayBody={OverlayBody}>
-        <div className={cx(bem("control", "body"))}>{placeholder}</div>
+        <div
+          className={cx(
+            bem("select", "body"),
+            bem("select", "body", { placeholder: value === undefined })
+          )}
+        >
+          {selectIndex !== -1 ? selectLabel : placeholder}
+        </div>
       </Panel>
     );
   }
