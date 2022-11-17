@@ -11,7 +11,10 @@
       display: flex;
       align-items: center;
       padding: $table-cell-padding-stretch;
-      box-shadow: 0 0 0 1px #f5f5f5;
+      // box-shadow: 0 1px 1px 0px #f5f5f5, 1px 0 1px 0px #f5f5f5;
+      border: 1px solid #f5f5f5;
+      border-top: none;
+      border-left: none;
       &--fixed {
         position: sticky;
         left: 0;

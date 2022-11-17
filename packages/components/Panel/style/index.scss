@@ -1,0 +1,27 @@
+@use '../../theme/index.scss' as *;
+
+.#{$prefix} {
+  &-control {
+    display: flex;
+    box-shadow: $border-shadow;
+    border-radius: $box-border-raduis;
+    padding: $box-padding;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    transition: all 100ms;
+
+    &:focus-within {
+      box-shadow: $box-focus-border;
+    }
+
+    &--middle {
+      padding: 3px;
+    }
+
+    &--small {
+      padding: 2px;
+    }
+  }
+}

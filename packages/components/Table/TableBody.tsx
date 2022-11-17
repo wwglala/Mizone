@@ -27,7 +27,7 @@ export default function TableBody(props: TableBodyProps) {
                 className={cx(
                   bem("table", "cell"),
                   bem("table", "cell", { row: true }),
-                  bem("table", "cell", { fixed })
+                  fixed && bem("table", "cell", { fixed })
                 )}
               >
                 {value ?? "-"}

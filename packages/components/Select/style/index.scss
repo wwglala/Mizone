@@ -1,0 +1,25 @@
+@use '../../theme/index.scss' as *;
+
+.#{$prefix} {
+  &-select {
+    border-radius: $box-border-raduis;
+    margin: 5px 0;
+    padding: $box-padding;
+    &:hover {
+      background-color: $nouse-bg;
+    }
+
+    &__body {
+      &--placeholder {
+        opacity: 0.6;
+      }
+    }
+    &--selected {
+      background-color: $primary;
+      color: white;
+      &:hover {
+        background-color: $primary;
+      }
+    }
+  }
+}
