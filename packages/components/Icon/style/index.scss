@@ -1,0 +1,12 @@
+@use '../../theme/index.scss' as *;
+.#{$prefix} {
+  &-icon {
+    display: block;
+    max-width: 1em;
+    min-width: 1em;
+    max-height: 1em;
+    min-height: 1em;
+    // font-size: max(1em, 16px);
+    fill: currentColor;
+  }
+}
