@@ -43,6 +43,7 @@ const dataSource = new Array(1000)
 
 Template.args = {
   dataSource,
+  guessHeight: 50,
   // parentHeight: 500,
   // itemHeight: 50,
 };
