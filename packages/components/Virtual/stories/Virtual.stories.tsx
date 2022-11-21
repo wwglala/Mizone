@@ -22,7 +22,7 @@ export const Template: ComponentStory<typeof Virtual> = (args) => (
             <div
               key={i}
               style={{
-                height: 50,
+                height: item.height,
                 border: "1px solid red",
                 boxSizing: "border-box",
               }}
@@ -39,11 +39,11 @@ export const Template: ComponentStory<typeof Virtual> = (args) => (
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 const dataSource = new Array(1000)
   .fill(0)
-  .map((item, i) => ({ name: `wwg${i}` }));
+  .map((item, i) => ({ name: `wwg${i}`, height: Math.random() * 50 + 50 }));
 
 Template.args = {
   dataSource,
   guessHeight: 50,
-  // parentHeight: 500,
+  parentHeight: 500,
   // itemHeight: 50,
 };

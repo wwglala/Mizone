@@ -4,6 +4,7 @@ import React, {
   forwardRef,
   useRef,
   useState,
+  useLayoutEffect,
 } from "react";
 import { useBem, useMergeRefs } from "../utils";
 
@@ -23,17 +24,28 @@ export const VirtualNormal = forwardRef<HTMLDivElement, VirtualNormalProps>(
     const bem = useBem();
 
     const [top, setTop] = useState(0);
+    const [_parentHeight, setParentHeight] = useState(parentHeight);
 
     const len = dataSource.length;
     const totalHeight = len * itemHeight;
-    const count = Math.ceil(parentHeight / itemHeight);
+    const count = Math.ceil(_parentHeight / itemHeight);
     const start = Math.floor(top / itemHeight);
-    const end = start + count * 2;
+    const end = start + count;
 
     const onScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
       const scrollTop = (e.target as HTMLInputElement).scrollTop;
       setTop(scrollTop - (scrollTop % itemHeight));
     };
+
+    useLayoutEffect(() => {
+      const observer = new ResizeObserver((mutaions) => {
+        const target = mutaions[0].target;
+        const rect = target.getBoundingClientRect();
+        setParentHeight(rect.height);
+      });
+      observer.observe(ref.current!);
+      return () => observer.unobserve(ref.current!);
+    }, []);
 
     return (
       <div ref={refs} className={bem("virtual")} onScroll={onScroll}>
@@ -43,7 +55,7 @@ export const VirtualNormal = forwardRef<HTMLDivElement, VirtualNormalProps>(
         />
         <div
           className={bem("virtual", "list")}
-          style={{ height: parentHeight, transform: `translateY(${top}px)` }}
+          style={{ height: _parentHeight, transform: `translateY(${top}px)` }}
         >
           {children(dataSource.slice(start, end))}
         </div>
