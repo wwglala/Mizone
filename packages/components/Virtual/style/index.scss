@@ -1,0 +1,19 @@
+@use '../../theme/index.scss' as *;
+
+.#{$prefix} {
+  &-virtual {
+    height: 100%;
+    overflow-y: scroll;
+    position: relative;
+    &__padding {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      z-index: -1;
+    }
+    &__list {
+      position: absolute;
+      width: 100%;
+    }
+  }
+}
