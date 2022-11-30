@@ -56,6 +56,12 @@ Template.args = {
     {
       title: "sex",
       dataIndex: "sex",
+      cell(_, i) {
+        return {
+          children: <div>colspan{i}</div>,
+          colSpan: i === 0 ? 2 : 0,
+        };
+      },
     },
     {
       title: "iphone",

@@ -13,13 +13,21 @@ import TableHeader from "./TableHeader";
 import { deepCopy } from "../utils";
 import useMarkGridLayoutInfo from "./useMarkGridLayoutInfo";
 
+export interface CellProps {
+  children?: ReactNode;
+  style?: CSSProperties;
+  colSpan?: number;
+  rowSpan?: number;
+  [x: string]: any;
+}
+
 export interface TableColumn {
   title: ReactNode;
   fixed?: boolean;
   dataIndex?: string;
   children?: TableColumn[];
   width?: number;
-  cell?: (value: any, index: number, record: any) => ReactNode;
+  cell?: (value: any, index: number, record: any) => CellProps;
 }
 
 export interface TableProps extends HTMLAttributes<HTMLDivElement> {
