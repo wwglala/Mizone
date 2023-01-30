@@ -1,0 +1,45 @@
+@use '../../theme/index.scss' as *;
+
+.#{$prefix} {
+  &-toolBar {
+    &__menu {
+      position: fixed;
+      width: 200px;
+      height: 200px;
+      // right: 0;
+      // bottom: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: green;
+
+      .#{$prefix}-toolBar {
+        &__toggle {
+          position: absolute;
+          width: 60px;
+          height: 60px;
+          z-index: 2;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: red;
+          &:hover {
+            cursor: pointer;
+          }
+          &:hover ~ .#{$prefix}-toolBar__li {
+            transform: rotate(calc(270deg + 160deg / 3 * var(--i)));
+          }
+        }
+
+        &__li {
+          position: absolute;
+          left: 0;
+          list-style: none;
+          z-index: 4;
+          transform-origin: 100px;
+        }
+      }
+    }
+  }
+}
