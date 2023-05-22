@@ -22,3 +22,4 @@ export const getExternals = () => {
     return externals.some((name) => name === id || id.startsWith(name));
   };
 };
+
