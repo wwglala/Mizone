@@ -1,14 +1,7 @@
 import fs from "fs/promises";
 import chalk from "chalk";
 import consola from "consola";
-import { extensions } from "./PATH";
 import uiPackages from "../packages/mizone/package.json";
-
-export const tryExt = (inputPath) => {
-  for (const ext of extensions) {
-    fs.readFile(inputPath, `index${ext}`);
-  }
-};
 
 export const copyFile = async (input, out) => {
   await fs.copyFile(input, out);

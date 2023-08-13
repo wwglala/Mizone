@@ -1,0 +1,78 @@
+@use '../../theme/index.scss' as *;
+
+.#{$prefix} {
+  &-fs-table {
+    &__wrapper {
+      overflow: scroll;
+      padding-bottom: 10px;
+    }
+
+    position: relative;
+    width: max-content;
+    &__container {
+      position: relative;
+    }
+
+    &__resize-wrapper {
+      position: absolute;
+      top: 0;
+    }
+
+    &__self {
+      border-spacing: 0;
+      border: none;
+    }
+    &__tr:nth-child(1) {
+      .#{$prefix} {
+        &-fs-table__td {
+          border-top: 1px solid $table-cell-border-color;
+        }
+      }
+    }
+
+    &__td:nth-child(1) {
+      border-left: 1px solid $table-cell-border-color;
+    }
+
+    &__td {
+      min-height: 39px;
+      min-width: 50px;
+      padding: 8px;
+      border-bottom: 1px solid $table-cell-border-color;
+      border-right: 1px solid $table-cell-border-color;
+      &-container {
+        min-height: 23px;
+        min-width: 32px;
+        word-break: break-all;
+        outline: none;
+      }
+    }
+
+    &__resize {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      &-item {
+        position: relative;
+      }
+      &-btn {
+        position: absolute;
+        right: -3px;
+        width: 10px;
+        cursor: col-resize;
+        &--active,
+        &:hover {
+          .#{$prefix}-fs-table__resize-line {
+            background-color: rgb(20, 86, 240);
+          }
+        }
+      }
+      &-line {
+        width: 2px;
+        height: 100px;
+        margin-left: 5px;
+      }
+    }
+  }
+}

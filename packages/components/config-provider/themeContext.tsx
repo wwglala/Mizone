@@ -3,9 +3,10 @@ import React, { createContext } from "react";
 export let defaultPrefixCls = "mizone";
 
 export const config = {
-  getPrefixCls: (suffixCls: string, customPrefixCls?: string) => {
+  getPrefixCls: (suffixCls: string[], customPrefixCls?: string) => {
     if (customPrefixCls) return customPrefixCls;
-    return `${defaultPrefixCls}-${suffixCls}`;
+
+    return suffixCls.map((item) => `${defaultPrefixCls}-${item}`).join(' ');
   },
   renderEmpty: (name?: string) => {
     switch (name) {

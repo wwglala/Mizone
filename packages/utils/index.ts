@@ -1,22 +1,33 @@
 export type Modifiers = Record<string, any>;
-export const bem = (
+export function bem(
   block: string,
   element?: string | Modifiers,
   modifiers?: Modifiers
-): string => {
-  if (typeof element === "string") {
-    block += `__${element}`;
-  }
-  if (typeof element === "object") {
-    for (const [key, valida] of Object.entries(element)) {
-      if (valida) block += `--${key}`;
-    }
-  }
-  if (modifiers) {
-    block += bem("", modifiers);
-  }
-  return block;
-};
+) {
+  return [
+    ...(function* () {
+      if (typeof element === "undefined") {
+        yield block;
+      } else if (typeof element === "object") {
+        yield block;
+        for (const [modifier, valid] of Object.entries(element)) {
+          if (valid) {
+            yield `${block}--${modifier}`;
+          }
+        }
+      } else if (typeof modifiers === "undefined") {
+        yield `${block}__${element}`;
+      } else {
+        yield `${block}__${element}`;
+        for (const [modifier, valid] of Object.entries(modifiers)) {
+          if (valid) {
+            yield `${block}__${element}--${modifier}`;
+          }
+        }
+      }
+    })(),
+  ];
+}
 
 export const cx = (...args: any[]): string => {
   return args
