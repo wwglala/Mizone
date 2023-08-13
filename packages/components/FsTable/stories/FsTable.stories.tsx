@@ -33,9 +33,9 @@ export const Template: ComponentStory<typeof FsTable> = (args) => {
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Template.args = {
-  // dataSource: [
-  //   ["", "", ""],
-  //   ["", "", ""],
-  // ],
+  dataSource: [
+    ["1", "2", "3"],
+    ["", "", ""],
+  ],
   // colgroup: [143, 225, 239],
 };
