@@ -19,3 +19,4 @@ npx mizone
 
 1. 单元测试
 2. changelog 自动生成
+3. changeset
